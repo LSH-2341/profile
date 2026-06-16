@@ -532,15 +532,15 @@ grid-template-columns: 1fr;
 }
 
 /* ================================
-   Floating Profile Card - Center Follow
-   왼쪽에 떠 있고, 화면 세로 중앙에 고정
+   Floating Profile Card - Delayed Follow
+   화면 중앙을 뒤늦게 따라오는 방식
 ================================ */
 
 @media (min-width: 1200px) {
   .profile-card {
-    position: fixed !important;
-    top: 50% !important;
+    position: absolute !important;
     left: 2rem !important;
+    top: 50vh;
     width: 220px;
     max-height: calc(100vh - 4rem);
     overflow-y: auto;
@@ -552,8 +552,8 @@ grid-template-columns: 1fr;
     backdrop-filter: blur(10px);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
 
-    transform: translateY(calc(-50% + var(--profile-offset, 0px)));
-    will-change: transform;
+    transform: none !important;
+    will-change: top;
   }
 
   .profile-avatar {
@@ -596,7 +596,6 @@ grid-template-columns: 1fr;
     border-radius: 10px;
   }
 
-  /* 중요: 본문을 오른쪽으로 밀지 않음 */
   .profile-hero,
   main,
   .footer {
@@ -620,7 +619,6 @@ grid-template-columns: 1fr;
   }
 }
 
-/* 화면이 좁으면 고정 해제 */
 @media (max-width: 1199px) {
   .profile-card {
     position: static !important;
