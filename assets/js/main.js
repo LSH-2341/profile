@@ -43,13 +43,13 @@ if (profileCard) {
     const scrollDelta = window.scrollY - lastScrollY;
     lastScrollY = window.scrollY;
 
-    targetOffset = clamp(scrollDelta * 0.5, -25, 25);
+    targetOffset = clamp(scrollDelta * 1.2, -80, 80);
   });
 
   function animateProfileCard() {
     if (window.innerWidth >= 1200) {
-      currentOffset += (targetOffset - currentOffset) * 0.04;
-      targetOffset *= 0.94;
+      currentOffset += (targetOffset - currentOffset) * 0.02;
+      targetOffset *= 0.97;
 
       profileCard.style.setProperty("--profile-offset", `${currentOffset}px`);
     } else {
