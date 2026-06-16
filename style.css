@@ -532,15 +532,15 @@ grid-template-columns: 1fr;
 }
 
 /* ================================
-   Floating Profile Card
-   페이지 레이아웃에는 영향 없이 왼쪽에 고정
+   Floating Profile Card - Center Follow
+   왼쪽에 떠 있고, 화면 세로 중앙에 고정
 ================================ */
 
 @media (min-width: 1200px) {
   .profile-card {
-    position: fixed;
-    top: 2rem;
-    left: 2rem;
+    position: fixed !important;
+    top: 50% !important;
+    left: 2rem !important;
     width: 220px;
     max-height: calc(100vh - 4rem);
     overflow-y: auto;
@@ -551,6 +551,9 @@ grid-template-columns: 1fr;
     background: rgba(29, 29, 35, 0.94);
     backdrop-filter: blur(10px);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+
+    transform: translateY(calc(-50% + var(--profile-offset, 0px)));
+    will-change: transform;
   }
 
   .profile-avatar {
@@ -597,7 +600,7 @@ grid-template-columns: 1fr;
   .profile-hero,
   main,
   .footer {
-    margin-left: 0;
+    margin-left: 0 !important;
   }
 
   .hero-layout {
@@ -617,19 +620,20 @@ grid-template-columns: 1fr;
   }
 }
 
-/* 화면이 좁으면 프로필 카드를 고정하지 않고 위에 자연스럽게 배치 */
+/* 화면이 좁으면 고정 해제 */
 @media (max-width: 1199px) {
   .profile-card {
-    position: static;
+    position: static !important;
     width: 100%;
     max-width: 420px;
     margin: 0 auto 2rem;
+    transform: none !important;
   }
 
   .profile-hero,
   main,
   .footer {
-    margin-left: 0;
+    margin-left: 0 !important;
   }
 
   .hero-layout {
