@@ -279,3 +279,40 @@ a {
 .media-hover:hover img {
   opacity: 0;
 }
+
+.sub-hero {
+min-height: 55vh;
+}
+
+.detail-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1.2rem;
+}
+
+.detail-card {
+padding: 1.5rem;
+background: #1d1d23;
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 18px;
+}
+
+.detail-card h3 {
+margin-top: 0;
+color: #ffffff;
+}
+
+.detail-card ul {
+padding-left: 1.2rem;
+color: #d0d0d0;
+}
+
+.detail-card li {
+margin-bottom: 0.4rem;
+}
+
+@media (max-width: 820px) {
+.detail-grid {
+grid-template-columns: 1fr;
+}
+}
