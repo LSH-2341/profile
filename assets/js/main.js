@@ -48,8 +48,8 @@ if (profileCard) {
 
   function animateProfileCard() {
     if (window.innerWidth >= 1200) {
-      currentOffset += (targetOffset - currentOffset) * 0.08;
-      targetOffset *= 0.92;
+      currentOffset += (targetOffset - currentOffset) * 0.04;
+      targetOffset *= 0.94;
 
       profileCard.style.setProperty("--profile-offset", `${currentOffset}px`);
     } else {
