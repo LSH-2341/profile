@@ -316,3 +316,19 @@ margin-bottom: 0.4rem;
 grid-template-columns: 1fr;
 }
 }
+
+.detail-media {
+  width: 100%;
+  margin-top: 1.5rem;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.detail-media video {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
