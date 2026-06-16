@@ -25,39 +25,31 @@ document.querySelectorAll(".media-hover").forEach((media) => {
 });
 
 
-// Floating profile card follow effect
+// Floating profile card - delayed follow
 const profileCard = document.querySelector(".profile-card");
 
 if (profileCard) {
-  let lastScrollY = window.scrollY;
-  let targetOffset = 0;
-  let currentOffset = 0;
+  let currentScroll = window.scrollY;
+  let targetScroll = window.scrollY;
 
-  function clamp(value, min, max) {
-    return Math.min(Math.max(value, min), max);
-  }
-
-  window.addEventListener("scroll", () => {
-    if (window.innerWidth < 1200) return;
-
-    const scrollDelta = window.scrollY - lastScrollY;
-    lastScrollY = window.scrollY;
-
-    targetOffset = clamp(scrollDelta * 1.2, -80, 80);
-  });
-
-  function animateProfileCard() {
+  function updateProfileCardPosition() {
     if (window.innerWidth >= 1200) {
-      currentOffset += (targetOffset - currentOffset) * 0.02;
-      targetOffset *= 0.97;
+      targetScroll = window.scrollY;
 
-      profileCard.style.setProperty("--profile-offset", `${currentOffset}px`);
+      // 숫자가 작을수록 더 늦게 따라옴
+      currentScroll += (targetScroll - currentScroll) * 0.06;
+
+      const cardHeight = profileCard.offsetHeight;
+      const centerY = window.innerHeight / 2;
+      const topPosition = currentScroll + centerY - cardHeight / 2;
+
+      profileCard.style.top = `${topPosition}px`;
     } else {
-      profileCard.style.setProperty("--profile-offset", "0px");
+      profileCard.style.top = "";
     }
 
-    requestAnimationFrame(animateProfileCard);
+    requestAnimationFrame(updateProfileCardPosition);
   }
 
-  animateProfileCard();
+  updateProfileCardPosition();
 }
