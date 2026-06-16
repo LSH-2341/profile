@@ -531,15 +531,62 @@ grid-template-columns: 1fr;
   }
 }
 
+/* ================================
+   Fixed Left Profile Sidebar - Compact
+================================ */
+
 @media (min-width: 1000px) {
   .profile-card {
     position: fixed;
-    top: 3rem;
-    left: 3rem;
-    width: 300px;
-    max-height: calc(100vh - 6rem);
+    top: 2rem;
+    left: 2rem;
+    width: 230px;
+    max-height: calc(100vh - 4rem);
     overflow-y: auto;
     z-index: 1000;
+
+    padding: 1.2rem;
+    border-radius: 20px;
+  }
+
+  .profile-avatar {
+    width: 92px;
+    height: 92px;
+    margin: 0 auto 0.9rem;
+    border-radius: 22px;
+  }
+
+  .profile-avatar span {
+    font-size: 1rem;
+  }
+
+  .profile-card h2 {
+    font-size: 1.35rem;
+  }
+
+  .profile-role {
+    font-size: 0.82rem;
+    margin: 0.25rem 0 0.8rem;
+  }
+
+  .profile-info {
+    padding: 0.75rem 0;
+    margin: 0.8rem 0;
+  }
+
+  .profile-info p {
+    font-size: 0.78rem;
+    margin: 0.25rem 0;
+  }
+
+  .profile-links {
+    gap: 0.45rem;
+  }
+
+  .profile-links a {
+    padding: 0.55rem 0.8rem;
+    font-size: 0.85rem;
+    border-radius: 10px;
   }
 
   .hero-layout {
@@ -547,23 +594,23 @@ grid-template-columns: 1fr;
   }
 
   .profile-hero {
-    margin-left: 360px;
-    min-height: 100vh;
-    padding: 5rem 0;
+    margin-left: 290px;
+    min-height: 90vh;
+    padding: 4.5rem 0;
   }
 
   main {
-    margin-left: 360px;
+    margin-left: 290px;
   }
 
   .footer {
-    margin-left: 360px;
+    margin-left: 290px;
   }
 
   .profile-hero .container,
   main .container,
   .footer .container {
-    width: min(900px, 92%);
+    width: min(920px, 92%);
   }
 }
 
@@ -587,4 +634,3 @@ grid-template-columns: 1fr;
     grid-template-columns: 1fr;
   }
 }
-
