@@ -244,3 +244,38 @@ a {
     padding: 3.5rem 0;
   }
 }
+
+.media-hover {
+  position: relative;
+  overflow: hidden;
+  background: #111;
+}
+
+.media-hover img,
+.media-hover video {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+  display: block;
+  border-radius: 18px;
+}
+
+.media-hover video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.media-hover img {
+  transition: opacity 0.25s ease;
+}
+
+.media-hover:hover video {
+  opacity: 1;
+}
+
+.media-hover:hover img {
+  opacity: 0;
+}
