@@ -532,50 +532,54 @@ grid-template-columns: 1fr;
 }
 
 /* ================================
-   Fixed Left Profile Sidebar - Compact
+   Floating Profile Card
+   페이지 레이아웃에는 영향 없이 왼쪽에 고정
 ================================ */
 
-@media (min-width: 1000px) {
+@media (min-width: 1200px) {
   .profile-card {
     position: fixed;
     top: 2rem;
     left: 2rem;
-    width: 230px;
+    width: 220px;
     max-height: calc(100vh - 4rem);
     overflow-y: auto;
     z-index: 1000;
 
-    padding: 1.2rem;
+    padding: 1.1rem;
     border-radius: 20px;
+    background: rgba(29, 29, 35, 0.94);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
   }
 
   .profile-avatar {
-    width: 92px;
-    height: 92px;
-    margin: 0 auto 0.9rem;
-    border-radius: 22px;
+    width: 82px;
+    height: 82px;
+    margin: 0 auto 0.8rem;
+    border-radius: 20px;
   }
 
   .profile-avatar span {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .profile-card h2 {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
   }
 
   .profile-role {
-    font-size: 0.82rem;
-    margin: 0.25rem 0 0.8rem;
+    font-size: 0.78rem;
+    margin: 0.25rem 0 0.75rem;
   }
 
   .profile-info {
-    padding: 0.75rem 0;
-    margin: 0.8rem 0;
+    padding: 0.7rem 0;
+    margin: 0.75rem 0;
   }
 
   .profile-info p {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     margin: 0.25rem 0;
   }
 
@@ -584,38 +588,37 @@ grid-template-columns: 1fr;
   }
 
   .profile-links a {
-    padding: 0.55rem 0.8rem;
-    font-size: 0.85rem;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.8rem;
     border-radius: 10px;
+  }
+
+  /* 중요: 본문을 오른쪽으로 밀지 않음 */
+  .profile-hero,
+  main,
+  .footer {
+    margin-left: 0;
   }
 
   .hero-layout {
     display: block;
   }
 
-  .profile-hero {
-    margin-left: 290px;
-    min-height: 90vh;
-    padding: 4.5rem 0;
-  }
-
-  main {
-    margin-left: 290px;
-  }
-
-  .footer {
-    margin-left: 290px;
+  .hero-main {
+    max-width: 880px;
+    margin: 0 auto;
   }
 
   .profile-hero .container,
   main .container,
   .footer .container {
-    width: min(920px, 92%);
+    width: min(1100px, 92%);
+    margin: 0 auto;
   }
 }
 
-/* 태블릿/모바일에서는 왼쪽 고정 해제 */
-@media (max-width: 999px) {
+/* 화면이 좁으면 프로필 카드를 고정하지 않고 위에 자연스럽게 배치 */
+@media (max-width: 1199px) {
   .profile-card {
     position: static;
     width: 100%;
