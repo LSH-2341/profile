@@ -530,3 +530,61 @@ grid-template-columns: 1fr;
     grid-template-columns: 1fr;
   }
 }
+
+@media (min-width: 1000px) {
+  .profile-card {
+    position: fixed;
+    top: 3rem;
+    left: 3rem;
+    width: 300px;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+    z-index: 1000;
+  }
+
+  .hero-layout {
+    display: block;
+  }
+
+  .profile-hero {
+    margin-left: 360px;
+    min-height: 100vh;
+    padding: 5rem 0;
+  }
+
+  main {
+    margin-left: 360px;
+  }
+
+  .footer {
+    margin-left: 360px;
+  }
+
+  .profile-hero .container,
+  main .container,
+  .footer .container {
+    width: min(900px, 92%);
+  }
+}
+
+/* 태블릿/모바일에서는 왼쪽 고정 해제 */
+@media (max-width: 999px) {
+  .profile-card {
+    position: static;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto 2rem;
+  }
+
+  .profile-hero,
+  main,
+  .footer {
+    margin-left: 0;
+  }
+
+  .hero-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
