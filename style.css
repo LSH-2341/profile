@@ -365,3 +365,168 @@ grid-template-columns: 1fr;
     grid-template-columns: 1fr;
   }
 }
+
+.profile-hero {
+  min-height: 100vh;
+  padding: 5rem 0;
+}
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.profile-card {
+  background: rgba(29, 29, 35, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 26px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 1.3rem;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 90, 90, 0.5), transparent 45%),
+    linear-gradient(135deg, #2b2b34, #111116);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-avatar span {
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.profile-card h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #ffffff;
+}
+
+.profile-role {
+  margin: 0.3rem 0 1.2rem;
+  color: #ff7777 !important;
+  font-weight: 700;
+}
+
+.profile-info {
+  padding: 1rem 0;
+  margin: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.profile-info p {
+  margin: 0.35rem 0;
+  color: #cfcfcf;
+  font-size: 0.92rem;
+}
+
+.profile-links {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.profile-links a {
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #eaeaea;
+  transition: 0.2s;
+}
+
+.profile-links a:hover {
+  background: rgba(255, 90, 90, 0.18);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.hero-main h1 {
+  font-size: clamp(3.2rem, 8vw, 6.5rem);
+}
+
+.intro-card-list {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.intro-card {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-left: 4px solid #c72b2b;
+  border-radius: 16px;
+}
+
+.intro-card span {
+  color: #ff7777;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.intro-card p {
+  margin: 0;
+  color: #d8d8d8;
+}
+
+.career-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.career-card {
+  padding: 1.6rem;
+  background: #1d1d23;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+}
+
+.career-label {
+  margin: 0 0 0.6rem;
+  color: #ff7777 !important;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.career-card h3 {
+  margin: 0 0 0.8rem;
+  color: #ffffff;
+  font-size: 1.35rem;
+}
+
+.career-card p {
+  margin: 0.35rem 0;
+  color: #cfcfcf;
+}
+
+@media (max-width: 900px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-card {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .career-grid {
+    grid-template-columns: 1fr;
+  }
+}
