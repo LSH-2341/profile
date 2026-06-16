@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deadline | Project Detail</title>
+  <link rel="stylesheet" href="/profile/style.css?v=3">
+</head>
+
+<body>
+
+  <header class="hero sub-hero">
+    <div class="container">
+      <p class="label">Project Detail</p>
+      <h1>Deadline</h1>
+      <h2>1인칭 탈출형 공포게임</h2>
+
+      <p class="hero-text">
+        실제 대학교 건물 구조를 기반으로, 플레이어가 층별 퍼즐과 크리처 위협을 피해
+        5층에서 1층까지 탈출하는 1인칭 공포 탈출 게임입니다.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="/profile/index.html" class="btn">메인으로 돌아가기</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Project Overview</h2>
+
+        <div class="detail-grid">
+          <div class="detail-card">
+            <h3>프로젝트 정보</h3>
+            <ul>
+              <li>프로젝트명: Deadline</li>
+              <li>장르: 1인칭 탈출형 공포게임</li>
+              <li>개발 기간: 2026.03 ~ 진행 중</li>
+              <li>개발 형태: 팀 프로젝트 / 4명</li>
+              <li>담당 역할: 팀장</li>
+              <li>플랫폼: PC</li>
+              <li>확장 계획: VR 버전 확장 예정</li>
+              <li>개발 환경: Unity, C#</li>
+            </ul>
+          </div>
+
+          <div class="detail-card">
+            <h3>담당 역할</h3>
+            <p>
+              팀장으로서 보고서 작성, 크리처 기획, 콘텐츠 기획, 레벨 디자인을 담당했습니다.
+              또한 AI 도구를 활용하여 게임 시스템, 콘텐츠 로직, 크리처 로직, 플레이어 관련 기능,
+              UI 시스템을 Unity 프로젝트에 적용·수정·통합했습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
+        <h2 class="section-title">Core Systems</h2>
+
+        <div class="highlight-grid">
+          <div class="highlight-card">
+            <h3>Sound Reaction Creature AI</h3>
+            <p>
+              플레이어의 발소리, 키패드 오답 소리, 마이크 입력 소리에 반응하는 크리처 로직을 구현했습니다.
+              소리의 위치와 크기를 기반으로 크리처가 반응하고, 해당 위치로 이동한 뒤 탐색 상태로 전환되도록 구성했습니다.
+            </p>
+          </div>
+
+          <div class="highlight-card">
+            <h3>Stare & Flashlight Creature AI</h3>
+            <p>
+              플레이어의 시야와 손전등 빛 조건에 따라 추격이 멈추거나 재개되는 크리처를 구현했습니다.
+              단순 추격이 아니라 플레이어가 바라보는 방향과 조명 상태가 생존 전략에 영향을 주도록 설계했습니다.
+            </p>
+          </div>
+
+          <div class="highlight-card">
+            <h3>Keypad & Interaction System</h3>
+            <p>
+              Raycast 기반 상호작용을 통해 키패드, 문, 아이템, 퍼즐 장치를 조작할 수 있도록 구현했습니다.
+              키패드 입력 중에는 플레이어 시점과 조작 상태를 제어하여 퍼즐에 집중할 수 있도록 구성했습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Data Structure & Algorithm</h2>
+
+        <div class="problem-list">
+          <div class="problem-item">
+            <h3>상태 기반 크리처 AI</h3>
+            <p>
+              크리처 행동을 순찰, 반응, 추적, 탐색, 복귀 상태로 나누어 관리했습니다.
+              이를 통해 크리처가 항상 같은 방식으로 추격하는 것이 아니라,
+              플레이어의 행동과 환경 조건에 따라 다른 반응을 수행하도록 구성했습니다.
+            </p>
+          </div>
+
+          <div class="problem-item">
+            <h3>소리 위치 기반 감지 로직</h3>
+            <p>
+              소리가 발생한 위치, 소리의 크기, 발생 시간을 저장하고,
+              크리처가 해당 정보를 확인하여 반응하도록 구현했습니다.
+              이를 통해 달리기, 키패드 오답, 마이크 입력 같은 플레이어 행동이 게임 내 위험 요소로 연결되도록 만들었습니다.
+            </p>
+          </div>
+
+          <div class="problem-item">
+            <h3>시야각 및 Raycast 판정</h3>
+            <p>
+              플레이어가 크리처를 바라보고 있는지 확인하기 위해 방향 벡터와 시야각을 사용하고,
+              Raycast를 통해 중간에 장애물이 있는지 검사했습니다.
+              손전등 판정 역시 빛의 방향과 범위를 활용하여 크리처 반응에 연결했습니다.
+            </p>
+          </div>
+
+          <div class="problem-item">
+            <h3>NavMeshAgent 기반 추적</h3>
+            <p>
+              크리처의 순찰, 추격, 소리 위치 이동, 탐색 지점 이동에 NavMeshAgent를 사용했습니다.
+              이를 통해 맵 구조에 맞춰 크리처가 자연스럽게 이동하도록 구성했습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
+        <h2 class="section-title">Problem Solving</h2>
+
+        <div class="problem-list">
+          <div class="problem-item">
+            <h3>단순 추격 AI의 한계 개선</h3>
+            <p>
+              초기 크리처는 플레이어를 단순히 따라오는 방식이었지만,
+              공포게임에서는 플레이어의 행동이 위협 요소와 연결되는 구조가 필요하다고 판단했습니다.
+              이에 따라 소리, 시야, 손전등 조건을 크리처 AI에 연결하여 다양한 대응 방식을 만들었습니다.
+            </p>
+          </div>
+
+          <div class="problem-item">
+            <h3>키패드 상호작용 중 카메라 시점 문제</h3>
+            <p>
+              키패드 입력 후 다시 상호작용할 때 카메라 시점이 어긋나는 문제가 발생했습니다.
+              상호작용 시작과 종료 시 플레이어 조작 상태, 카메라 위치, 회전값을 분리하여 관리하는 방식으로 문제를 개선했습니다.
+            </p>
+          </div>
+
+          <div class="problem-item">
+            <h3>공포 연출과 UI 흐름 통합</h3>
+            <p>
+              공포 이벤트, 팝업 메시지, 상호작용 안내, 스태미너, 마이크 소음 UI가 따로 동작하면 게임 흐름이 끊길 수 있었습니다.
+              이를 하나의 플레이 흐름 안에서 동작하도록 연결하여 탐색과 공포 연출이 자연스럽게 이어지도록 구성했습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Result & Improvement</h2>
+
+        <p>
+          현재 Deadline은 PC 플랫폼을 기준으로 개발 중이며, 플레이어 이동, 상호작용,
+          키패드 퍼즐, 손전등, 크리처 AI, 마이크 소음, UI 시스템 등 핵심 플레이 시스템을 구현했습니다.
+        </p>
+
+        <p>
+          향후에는 VR 환경으로 확장할 수 있도록 상호작용 방식과 아이템 조작 방식을 개선하고,
+          크리처별 행동 패턴과 층별 공포 연출을 강화할 예정입니다.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Lee Suho. Deadline Project Detail.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
