@@ -270,4 +270,28 @@
   </footer>
 
 </body>
+<script>
+  document.querySelectorAll(".media-hover").forEach((media) => {
+    const video = media.querySelector("video");
+
+    media.addEventListener("mouseenter", () => {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    });
+
+    media.addEventListener("mouseleave", () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+
+    media.addEventListener("click", () => {
+      if (video.paused) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+  });
+</script>  
 </html>
