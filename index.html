@@ -1,22 +1,270 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>이수호 | Unity Game Developer Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>이수호</h1>
-  <h2>Unity Game Developer Portfolio</h2>
 
-  <p>
-    Unity와 C#을 기반으로 게임 시스템을 구현하는 게임 클라이언트 개발자 지망생입니다.
-  </p>
+  <header class="hero">
+    <div class="container">
+      <p class="label">Unity Game Developer Portfolio</p>
+      <h1>이수호</h1>
+      <h2>Unity / C# 기반 게임 클라이언트 개발자 지망생</h2>
+      <p class="hero-text">
+        Unity와 C#을 기반으로 게임 시스템을 구현하며, AI 도구를 활용해 기능 요구사항 정의,
+        코드 적용, 수정, 통합, 테스트 과정을 직접 수행해왔습니다.
+      </p>
 
-  <h3>Projects</h3>
-  <ul>
-    <li>Deadline - 1인칭 탈출형 공포게임</li>
-    <li>VANTA - 3인칭 생존 액션 로그라이트</li>
-    <li>The Sinking Island - 타임어택 생존 탈출 게임</li>
-  </ul>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn primary">프로젝트 보기</a>
+        <a href="mailto:sllhll1237@gmail.com" class="btn">Email</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p>
+          Unity와 C#을 기반으로 플레이어 시스템, 크리처 AI, 인벤토리, UI, 스폰 시스템 등
+          게임 플레이에 필요한 핵심 시스템을 구현해온 게임 클라이언트 개발자 지망생입니다.
+        </p>
+        <p>
+          팀 프로젝트에서는 팀장 역할을 맡아 보고서 작성, 게임 기획, 콘텐츠 기획, 레벨 디자인을 담당했으며,
+          AI 도구를 활용해 생성된 코드를 프로젝트 구조에 맞게 적용·수정·통합·테스트하는 방식으로
+          실제 플레이 가능한 시스템을 구축했습니다.
+        </p>
+      </div>
+    </section>
+
+    <section class="section dark" id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+
+        <div class="skill-grid">
+          <div class="skill-card">
+            <h3>Engine</h3>
+            <p>Unity</p>
+          </div>
+          <div class="skill-card">
+            <h3>Language</h3>
+            <p>C#</p>
+          </div>
+          <div class="skill-card">
+            <h3>Gameplay</h3>
+            <p>Player Movement, Interaction, Puzzle, Survival System</p>
+          </div>
+          <div class="skill-card">
+            <h3>AI</h3>
+            <p>NavMeshAgent, Creature AI, Sound Reaction, Monster Spawn</p>
+          </div>
+          <div class="skill-card">
+            <h3>UI</h3>
+            <p>Canvas UI, Inventory UI, Quick Slot, HUD, Pop-up UI</p>
+          </div>
+          <div class="skill-card">
+            <h3>Development</h3>
+            <p>AI-assisted Development, Debugging, Play Testing</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+
+        <article class="project-card">
+          <div class="project-media placeholder">
+            Deadline Image / Video
+          </div>
+
+          <div class="project-content">
+            <p class="project-type">Team Project · Leader · PC · VR 확장 예정</p>
+            <h3>Deadline</h3>
+            <p>
+              실제 대학교 건물 구조를 기반으로, 플레이어가 층별 퍼즐과 크리처 위협을 피해
+              5층에서 1층까지 탈출하는 1인칭 탈출형 공포게임입니다.
+            </p>
+
+            <div class="tag-list">
+              <span>Creature AI</span>
+              <span>Sound Reaction</span>
+              <span>Flashlight</span>
+              <span>Keypad</span>
+              <span>UI</span>
+            </div>
+
+            <ul class="project-list">
+              <li>팀장으로서 보고서 작성, 크리처 기획, 콘텐츠 기획, 레벨 디자인 담당</li>
+              <li>AI 도구를 활용해 크리처 로직, 플레이어 시스템, UI 시스템 구축</li>
+              <li>소리, 시야, 손전등 조건에 반응하는 공포 플레이 구조 구현</li>
+            </ul>
+
+            <div class="project-buttons">
+              <a href="#" class="btn small">영상 보기</a>
+              <a href="#" class="btn small primary">상세 기술서 보기</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card reverse">
+          <div class="project-media placeholder">
+            VANTA Image / Video
+          </div>
+
+          <div class="project-content">
+            <p class="project-type">Personal Project · PC · Prototype</p>
+            <h3>VANTA</h3>
+            <p>
+              몬스터를 처치하고 경험치를 획득해 성장하며, 잠식률에 따라 위험도 함께 증가하는
+              3인칭 생존 액션 로그라이트 게임입니다.
+            </p>
+
+            <div class="tag-list">
+              <span>Enemy Spawn</span>
+              <span>Level Up Choice</span>
+              <span>Auto Attack</span>
+              <span>Skill</span>
+              <span>Corruption</span>
+            </div>
+
+            <ul class="project-list">
+              <li>기획, 시스템 설계, Unity 클라이언트 개발을 개인으로 진행</li>
+              <li>시간과 잠식률에 따라 적 스폰과 난이도가 상승하는 구조 구현</li>
+              <li>List 기반 랜덤 업그레이드 선택과 자동 공격/스킬 시스템 구현</li>
+            </ul>
+
+            <div class="project-buttons">
+              <a href="#" class="btn small">영상 보기</a>
+              <a href="#" class="btn small primary">상세 기술서 보기</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-media placeholder">
+            Sinking Island Image / Video
+          </div>
+
+          <div class="project-content">
+            <p class="project-type">Team Project · Leader · PC</p>
+            <h3>The Sinking Island</h3>
+            <p>
+              시간이 지날수록 물에 잠기는 섬에서 자원을 수집하고, 인벤토리와 수위 상승 시스템을
+              활용해 제한 시간 안에 탈출하는 타임어택 생존 탈출 게임입니다.
+            </p>
+
+            <div class="tag-list">
+              <span>Inventory</span>
+              <span>Resource Spawn</span>
+              <span>Water Rising</span>
+              <span>Flood UI</span>
+              <span>Sound</span>
+            </div>
+
+            <ul class="project-list">
+              <li>팀장으로서 보고서 작성, 전체 기획, 핵심 시스템 구현 담당</li>
+              <li>인벤토리, 퀵슬롯, 아이템 사용, 스탯 물약 시스템 구현</li>
+              <li>맵 높이에 따른 자원/몬스터 자동 랜덤 배치와 수위 상승 UI 구현</li>
+            </ul>
+
+            <div class="project-buttons">
+              <a href="#" class="btn small">영상 보기</a>
+              <a href="#" class="btn small primary">상세 기술서 보기</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section dark" id="technical">
+      <div class="container">
+        <h2 class="section-title">Technical Highlights</h2>
+
+        <div class="highlight-grid">
+          <div class="highlight-card">
+            <h3>상태 기반 크리처 AI</h3>
+            <p>
+              Patrol, Roar, RunToNoise, Search, Return 상태를 분리하여
+              소리와 플레이어 행동에 반응하는 크리처 로직을 구현했습니다.
+            </p>
+          </div>
+
+          <div class="highlight-card">
+            <h3>랜덤 업그레이드 선택</h3>
+            <p>
+              List 기반 업그레이드 후보에서 중복 없는 3개의 선택지를 뽑고,
+              선택된 효과를 즉시 플레이어 스탯과 무기에 적용했습니다.
+            </p>
+          </div>
+
+          <div class="highlight-card">
+            <h3>배열 기반 인벤토리</h3>
+            <p>
+              InventorySlot 배열을 사용해 인벤토리와 퀵슬롯을 관리하고,
+              아이템 스택, 슬롯 교환, 장착, 사용 흐름을 구현했습니다.
+            </p>
+          </div>
+
+          <div class="highlight-card">
+            <h3>높이 기반 자원 스폰</h3>
+            <p>
+              Raycast와 위치 리스트를 활용해 지형 위에 자원을 배치하고,
+              맵의 높이에 따라 다른 자원과 몬스터가 등장하도록 구현했습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="problem-solving">
+      <div class="container">
+        <h2 class="section-title">Problem Solving</h2>
+
+        <div class="problem-list">
+          <div class="problem-item">
+            <h3>Unity 빌드 및 개발 환경 문제 해결</h3>
+            <p>
+              플랫폼 전환 및 빌드 과정에서 발생한 오류를 코드 문제와 환경 문제로 분리해 분석하고,
+              프로젝트 폴더 정리, 모듈 확인, 다른 PC 테스트를 통해 원인을 좁혀갔습니다.
+            </p>
+          </div>
+
+          <div class="problem-item">
+            <h3>크리처 AI 반응 로직 개선</h3>
+            <p>
+              단순 추격 방식에서 벗어나 소리, 시야, 손전등 조건에 따라 다른 반응을 보이도록
+              상태 기반 로직으로 분리했습니다.
+            </p>
+          </div>
+
+          <div class="problem-item">
+            <h3>인벤토리와 UI 흐름 통합</h3>
+            <p>
+              아이템 획득, 슬롯 저장, 퀵슬롯 선택, 손 장착, 소비 효과 적용이 하나의 흐름으로
+              이어지도록 시스템을 분리하고 연결했습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:sllhll1237@gmail.com">sllhll1237@gmail.com</a></p>
+      <p>© 2026 Lee Suho. Unity Game Developer Portfolio.</p>
+    </div>
+  </footer>
+
 </body>
 </html>
