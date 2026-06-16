@@ -1,1 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Sinking Island | Project Detail</title>
+  <link rel="stylesheet" href="/profile/style.css?v=3">
+</head>
 
+<body>
+
+  <header class="hero sub-hero">
+    <div class="container">
+      <p class="label">Project Detail</p>
+      <h1>The Sinking Island</h1>
+      <h2>타임어택 생존 탈출 게임</h2>
+
+      <p class="hero-text">
+        시간이 지날수록 물에 잠기는 섬에서 자원을 수집하고,
+        점점 위로 이동하며 강력한 몬스터를 피해 제한 시간 안에 탈출하는
+        1인용 타임어택 생존 탈출 게임입니다.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="/profile/index.html" class="btn">메인으로 돌아가기</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Project Overview</h2>
+
+        <div class="detail-grid">
+          <div class="detail-card">
+            <h3>프로젝트 정보</h3>
+            <ul>
+              <li>프로젝트명: The Sinking Island</li>
+              <li>장르: 1인용 타임어택 생존 탈출 게임</li>
+              <li>개발 기간: 2025.09 ~ 2025.11.25</li>
+              <li>개발 형태: 팀 프로젝트 / 5명</li>
+              <li>담당 역할: 팀장</li>
+              <li>플랫폼: PC</li>
+              <li>개발 환경: Unity, C#</li>
+            </ul>
+          </div>
+
+          <div class="detail-card">
+            <h3>담당 역할</h3>
+            <p>
+              팀장으로서 보고서 작성과 게임의 전체 기획을 담당했습니다.
+              물이 점차 차오르며 플레이어가 위로 이동할 수밖에 없는 구조를 기획했고,
+              위로 갈수록 강력한 몬스터가 등장하도록 설계하여 플레이가 지루하지 않고
+              지속적인 긴장감을 유지하도록 구성했습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
+        <h2 class="section-title">Core Systems</h2>
+
+        <div class="highlight-grid">
+          <div class="highlight-card">
+            <h3>Inventory & Quick Slot System</h3>
+            <p>
+              인벤토리와 퀵슬롯을 분리하여 아이템 획득, 스택 처리,
+              슬롯 교환, 손 장착, 소비 아이템 사용 흐름이 하나로 이어지도록 구현했습니다.
+            </p>
+          </div>
+
+          <div class="highlight-card">
+            <h3>Water Rising System</h3>
+            <p>
+              시간이 지남에 따라 물의 높이가 상승하고,
+              플레이어가 수면 아래에 위치하면 침수 상태로 판정하여
+              지속 데미지와 화면 효과가 적용되도록 구현했습니다.
+            </p>
+          </div>
+
+          <div class="highlight-card">
+            <h3>Height-based Resource Spawn</h3>
+            <p>
+              맵의 높이에 따라 서로 다른 자원과 몬스터가 자동으로 배치되도록 구현했습니다.
+              인스펙터에서 프리팹만 추가하면 자동으로 스폰 목록에 반영될 수 있도록 구성했습니다.
+            </p>
+          </div>
+
+          <div class="highlight-card">
+            <h3>Player Status UI</h3>
+            <p>
+              플레이어의 체력과 상태에 따라 UI가 변화하도록 구현했습니다.
+              체력 감소, 저체력 상태, 침수 상태가 화면 효과와 HUD에 반영되도록 연결했습니다.
+            </p>
+          </div>
+
+          <div class="highlight-card">
+            <h3>Random Stat Potion</h3>
+            <p>
+              몬스터 처치 시 드롭되는 물약 아이템을 통해
+              플레이어의 스탯 중 일부가 랜덤으로 증가하도록 구현했습니다.
+            </p>
+          </div>
+
+          <div class="highlight-card">
+            <h3>Sound System</h3>
+            <p>
+              아이템 사용, 플레이어 피격, 몬스터 등장, 환경 변화 등
+              주요 게임 이벤트에 사운드를 연결하여 생존 상황의 몰입감을 높였습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Data Structure & Algorithm</h2>
+
+        <div class="problem-list">
+          <div class="problem-item">
+            <h3>Slot-based Inventory Structure</h3>
+            <p>
+              고정 슬롯 기반의 인벤토리와 퀵슬롯 구조를 사용하여
+              아이템 데이터와 수량을 슬롯 단위로 관리했습니다.
+              아이템 획득 시 기존 스택을 먼저 확인하고, 빈 슬롯이 있을 경우 새 슬롯에 저장되도록 구성했습니다.
+            </p>
+          </div>
+
+          <div class="problem-item">
+            <h3>Raycast 기반 지형 탐색</h3>
+            <p>
+              자원 생성 시 임의 위치를 정한 뒤 위에서 아래로 Raycast를 사용하여
+              실제 지형 위의 유효한 생성 위치를 찾도록 구현했습니다.
+              이를 통해 공중이나 잘못된 위치에 자원이 생성되는 문제를 줄였습니다.
+            </p>
+          </div>
+
+          <div class="problem-item">
+            <h3>높이 기반 프리팹 선택</h3>
+            <p>
+              생성 위치의 Y값을 기준으로 높이 구간을 판단하고,
+              해당 구간에 맞는 자원 또는 몬스터 프리팹이 등장하도록 구성했습니다.
+              이를 통해 플레이어가 위로 올라갈수록 다른 자원과 위협을 경험하도록 만들었습니다.
+            </p>
+          </div>
+
+          <div class="problem-item">
+            <h3>겹침 방지 스폰 로직</h3>
+            <p>
+              생성된 자원의 위치를 저장하고, 새로운 자원 생성 시 기존 위치와의 거리를 비교하여
+              일정 거리 이상 떨어진 곳에만 배치되도록 구현했습니다.
+              이를 통해 자원이 한곳에 뭉쳐 생성되는 문제를 방지했습니다.
+            </p>
+          </div>
+
+          <div class="problem-item">
+            <h3>시간 기반 수위 상승</h3>
+            <p>
+              매 프레임 물 오브젝트의 높이를 증가시키고,
+              플레이어의 위치와 물의 높이를 비교하여 침수 여부를 판단했습니다.
+              이 구조를 통해 시간 제한과 이동 압박을 게임 플레이에 직접 연결했습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
+        <h2 class="section-title">Problem Solving</h2>
+
+        <div class="problem-list">
+          <div class="problem-item">
+            <h3>생존 압박 구조 설계</h3>
+            <p>
+              단순히 자원을 수집하는 생존 게임은 플레이 흐름이 느슨해질 수 있다고 판단했습니다.
+              이를 해결하기 위해 시간이 지날수록 섬이 물에 잠기고,
+              플레이어가 더 높은 지역으로 이동할 수밖에 없는 구조를 설계했습니다.
+            </p>
+          </div>
+
+          <div class="problem-item">
+            <h3>자원 자동 배치 구조 구현</h3>
+            <p>
+              수작업으로 모든 자원을 배치하면 수정과 확장이 어렵기 때문에,
+              인스펙터에서 프리팹을 추가하면 높이 구간에 따라 자동으로 자원이 배치되는 구조를 구현했습니다.
+              이를 통해 맵 수정이나 자원 추가 작업을 더 쉽게 할 수 있도록 개선했습니다.
+            </p>
+          </div>
+
+          <div class="problem-item">
+            <h3>침수 상태와 UI 연결</h3>
+            <p>
+              물이 차오르는 시스템만으로는 플레이어가 위험 상태를 직관적으로 인식하기 어려웠습니다.
+              플레이어가 물에 잠겼을 때 화면 패널, 파티클, 데미지, 체력 UI가 함께 반응하도록 연결하여
+              침수 상태를 시각적으로 전달했습니다.
+            </p>
+          </div>
+
+          <div class="problem-item">
+            <h3>아이템 획득과 사용 흐름 통합</h3>
+            <p>
+              아이템 획득, 인벤토리 저장, 퀵슬롯 선택, 손 장착, 소비 효과 적용이 따로 동작하면
+              실제 플레이 흐름이 끊길 수 있었습니다.
+              이를 하나의 흐름으로 연결하여 플레이어가 아이템을 자연스럽게 사용할 수 있도록 구성했습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Result & Improvement</h2>
+
+        <p>
+          The Sinking Island에서는 인벤토리, 퀵슬롯, 아이템 사용, 수위 상승,
+          침수 UI, 체력 UI, 사운드 시스템, 자원 및 몬스터 자동 배치 시스템을 구현했습니다.
+        </p>
+
+        <p>
+          향후 개선 방향으로는 몬스터 종류를 문자열 이름이 아닌 enum 또는 별도 데이터 컴포넌트로 관리하고,
+          자원 스폰 역시 더 많은 오브젝트를 처리할 수 있도록 공간 분할 방식으로 개선할 수 있습니다.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Lee Suho. The Sinking Island Project Detail.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
