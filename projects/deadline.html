@@ -201,19 +201,31 @@
     
           <div class="branch-path yes">
             <h4>YES: 크리처에게 잡힘</h4>
-    
+          
             <div class="branch-row">
-              <div class="branch-step danger">정신력 감소</div>
+              <div class="branch-step danger">정신력 1칸 감소</div>
               <div class="branch-arrow">→</div>
               <div class="branch-step decision">3회 누적?</div>
             </div>
-    
+          
             <div class="branch-row" style="margin-top: 0.9rem;">
               <div class="branch-step safe">NO: 진행 계속</div>
-              <div class="branch-arrow">↺</div>
+              <div class="branch-arrow">→</div>
+              <div class="branch-step decision">드링크 발견?</div>
+            </div>
+          
+            <div class="branch-row" style="margin-top: 0.9rem;">
+              <div class="branch-step safe">YES: 정신력 1칸 회복</div>
+              <div class="branch-arrow">→</div>
               <div class="branch-step">탐색 재개</div>
             </div>
-    
+          
+            <div class="branch-row" style="margin-top: 0.9rem;">
+              <div class="branch-step">NO: 현재 정신력 유지</div>
+              <div class="branch-arrow">→</div>
+              <div class="branch-step">탐색 재개</div>
+            </div>
+          
             <div class="branch-row" style="margin-top: 0.9rem;">
               <div class="branch-step danger">YES: 사망</div>
               <div class="branch-arrow">→</div>
