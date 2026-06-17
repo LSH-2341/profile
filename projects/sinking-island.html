@@ -187,135 +187,179 @@
             <p>
               Sinking Island는 가장 낮은 해변가에서 시작해 몬스터를 처치하며 성장하고,
               절벽과 길을 따라 점점 높은 층으로 이동하는 생존 탈출 게임입니다.
-              각 층의 보스를 처치해야 마지막 층의 보트를 수리할 수 있으며,
-              플레이어는 잠겨가는 섬에서 탈출해야 합니다.
+              층이 높아질수록 몬스터의 스탯이 증가하며, 각 층의 보스를 처치해야
+              마지막 층의 보트를 수리하고 섬을 탈출할 수 있습니다.
             </p>
-          
+    
             <div class="flow-steps">
               <div class="flow-step">
                 <span class="flow-step-number">STEP 01</span>
                 <div class="flow-step-title">해변가에서 시작</div>
               </div>
-          
+    
               <div class="flow-step">
                 <span class="flow-step-number">STEP 02</span>
                 <div class="flow-step-title">몬스터 처치 및 성장</div>
               </div>
-          
+    
               <div class="flow-step warning">
                 <span class="flow-step-number">STEP 03</span>
                 <div class="flow-step-title">상층 이동과 난이도 상승</div>
               </div>
-          
+    
               <div class="flow-step safe">
                 <span class="flow-step-number">STEP 04</span>
-                <div class="flow-step-title">보스 처치 후 보트 수리 및 탈출</div>
+                <div class="flow-step-title">보트 수리 후 섬 탈출</div>
               </div>
             </div>
-          
+    
             <div class="flow-branches">
               <div class="flow-branch good">
                 <h4>성장 루프</h4>
                 <div class="flow-mini-steps">
                   <div class="flow-mini-step">몬스터 처치</div>
                   <div class="flow-mini-step safe">랜덤 스탯 물약 획득</div>
-                  <div class="flow-mini-step">인벤토리 저장 및 사용</div>
-                  <div class="flow-mini-step safe">플레이어 능력치 강화</div>
+                  <div class="flow-mini-step">플레이어 능력치 강화</div>
+                  <div class="flow-mini-step warning">더 강한 몬스터 상대</div>
                 </div>
               </div>
-          
+    
               <div class="flow-branch bad">
                 <h4>탈출 목표</h4>
                 <div class="flow-mini-steps">
-                  <div class="flow-mini-step warning">상층으로 이동할수록 강한 몬스터 등장</div>
-                  <div class="flow-mini-step">층별 보스 조우</div>
-                  <div class="flow-mini-step safe">보스 처치</div>
-                  <div class="flow-mini-step safe">보트 수리 후 섬 탈출</div>
+                  <div class="flow-mini-step warning">층별 보스 조우</div>
+                  <div class="flow-mini-step">보스 처치</div>
+                  <div class="flow-mini-step safe">보트 수리 조건 충족</div>
+                  <div class="flow-mini-step safe">마지막 층에서 보트 수리 후 탈출</div>
                 </div>
               </div>
             </div>
-          
+    
             <div class="flow-note">
-              이 게임은 수위 상승으로 인한 이동 압박, 전투를 통한 성장,
-              그리고 최종 탈출 목표가 하나의 루프로 연결되도록 설계했습니다.
+              플레이어는 단순히 몬스터를 처치하는 것이 아니라,
+              수위 상승으로 인한 시간 압박 속에서 성장, 상층 이동, 보스 처치, 보트 수리를 모두 고려해야 합니다.
             </div>
           </div>
     
           <div class="flow-card">
             <h3>Water Rising Flow</h3>
             <p>
-              시간이 지날수록 섬의 수위가 상승하며, 낮은 층부터 점차 잠기도록 구성했습니다.
+              시간이 지날수록 섬의 수위가 상승하며, 낮은 지형부터 점차 잠기도록 구성했습니다.
               이 시스템은 플레이어가 한 장소에 오래 머무르지 못하게 만들고,
               더 높은 층으로 이동해야 하는 압박을 제공합니다.
             </p>
     
-            <div class="flow-line">
-              <div class="flow-step">시간 경과</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step warning">수위 상승</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">낮은 층 침수</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step warning">플레이어 압박</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">상층 이동 유도</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step safe">탈출 루트 탐색</div>
+            <div class="flow-steps">
+              <div class="flow-step">
+                <span class="flow-step-number">STEP 01</span>
+                <div class="flow-step-title">시간 경과</div>
+              </div>
+    
+              <div class="flow-step warning">
+                <span class="flow-step-number">STEP 02</span>
+                <div class="flow-step-title">수위 상승</div>
+              </div>
+    
+              <div class="flow-step danger">
+                <span class="flow-step-number">STEP 03</span>
+                <div class="flow-step-title">낮은 층부터 침수</div>
+              </div>
+    
+              <div class="flow-step safe">
+                <span class="flow-step-number">STEP 04</span>
+                <div class="flow-step-title">상층 이동 유도</div>
+              </div>
+            </div>
+    
+            <div class="flow-branches">
+              <div class="flow-branch bad">
+                <h4>침수 위험</h4>
+                <div class="flow-mini-steps">
+                  <div class="flow-mini-step warning">플레이어 위치와 수면 높이 비교</div>
+                  <div class="flow-mini-step danger">플레이어가 수면 아래로 내려감</div>
+                  <div class="flow-mini-step danger">침수 상태 판정</div>
+                  <div class="flow-mini-step warning">체력 감소 및 화면 효과 표시</div>
+                </div>
+              </div>
+    
+              <div class="flow-branch good">
+                <h4>생존 대응</h4>
+                <div class="flow-mini-steps">
+                  <div class="flow-mini-step">절벽과 길 탐색</div>
+                  <div class="flow-mini-step safe">더 높은 층으로 이동</div>
+                  <div class="flow-mini-step">새로운 자원과 몬스터 조우</div>
+                  <div class="flow-mini-step safe">탈출 루트 확보</div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="flow-note">
+              수위 상승은 단순한 배경 연출이 아니라,
+              플레이어의 이동 방향과 플레이 시간을 제한하는 핵심 압박 시스템입니다.
             </div>
           </div>
     
           <div class="flow-card">
             <h3>Inventory & Reward Flow</h3>
             <p>
-              몬스터를 처치하면 랜덤 스탯 물약이 드랍되고, 플레이어는 이를 인벤토리에 저장한 뒤 사용할 수 있습니다.
-              아이템 사용 시 체력, 공격력 등 플레이어의 능력치가 상승하며,
+              몬스터를 처치하면 랜덤 스탯 물약이 드랍되고,
+              플레이어는 이를 인벤토리에 저장한 뒤 사용할 수 있습니다.
+              아이템 사용 시 플레이어의 능력치가 상승하며,
               더 높은 층의 강한 몬스터와 보스를 상대할 수 있는 성장 구조로 연결됩니다.
             </p>
-          
-            <div class="flow-line">
-              <div class="flow-step warning">몬스터 처치</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step safe">랜덤 스탯 물약 드랍</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">아이템 획득</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">인벤토리 슬롯 확인</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">인벤토리 저장</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">아이템 사용</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step safe">플레이어 스탯 상승</div>
+    
+            <div class="flow-steps">
+              <div class="flow-step warning">
+                <span class="flow-step-number">STEP 01</span>
+                <div class="flow-step-title">몬스터 처치</div>
+              </div>
+    
+              <div class="flow-step safe">
+                <span class="flow-step-number">STEP 02</span>
+                <div class="flow-step-title">랜덤 스탯 물약 드랍</div>
+              </div>
+    
+              <div class="flow-step">
+                <span class="flow-step-number">STEP 03</span>
+                <div class="flow-step-title">인벤토리 저장 및 사용</div>
+              </div>
+    
+              <div class="flow-step safe">
+                <span class="flow-step-number">STEP 04</span>
+                <div class="flow-step-title">플레이어 스탯 상승</div>
+              </div>
+            </div>
+    
+            <div class="flow-branches">
+              <div class="flow-branch good">
+                <h4>아이템 획득</h4>
+                <div class="flow-mini-steps">
+                  <div class="flow-mini-step">아이템과 상호작용</div>
+                  <div class="flow-mini-step">빈 슬롯 또는 같은 아이템 슬롯 확인</div>
+                  <div class="flow-mini-step safe">인벤토리에 저장</div>
+                  <div class="flow-mini-step">퀵슬롯 또는 인벤토리에서 사용 가능</div>
+                </div>
+              </div>
+    
+              <div class="flow-branch good">
+                <h4>아이템 사용</h4>
+                <div class="flow-mini-steps">
+                  <div class="flow-mini-step">스탯 물약 선택</div>
+                  <div class="flow-mini-step safe">체력 / 공격력 등 능력치 상승</div>
+                  <div class="flow-mini-step">아이템 수량 감소</div>
+                  <div class="flow-mini-step warning">상층의 강한 몬스터와 전투</div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="flow-note">
+              인벤토리 시스템은 단순 보관 기능이 아니라,
+              몬스터 처치 보상과 플레이어 성장, 상층 진행 난이도를 연결하는 핵심 시스템으로 사용됩니다.
             </div>
           </div>
-    
-          <div class="flow-card">
-            <h3>Height-based Difficulty Flow</h3>
-            <p>
-              맵은 층과 높이를 기준으로 구성되어 있으며,
-              플레이어가 더 높은 구역으로 이동할수록 더 강한 몬스터와 보스를 만나게 됩니다.
-              이를 통해 수위 상승에 따른 이동 압박과 난이도 상승을 함께 연결했습니다.
-            </p>
-    
-            <div class="flow-line">
-              <div class="flow-step">낮은 해변가</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">중간 층 진입</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step warning">몬스터 스탯 증가</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">상층 진입</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step warning">보스 등장</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step safe">탈출 조건 달성</div>
-            </div>
-          </div>
-    
-        </div>
+         </div>
       </div>
-    </section>
-
+    </section> 
     <section class="section">
       <div class="container">
         <h2 class="section-title">Data Structure & Algorithm</h2>
