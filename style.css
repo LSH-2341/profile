@@ -839,26 +839,132 @@ main,
   }
 }
 
-
 /* ================================
-   작은 화면 보정
+   Responsive Top Navigation
+   작은 화면에서는 상단 메뉴 표시
 ================================ */
 
-@media (max-width: 720px) {
+.mobile-top-nav {
+  display: none;
+}
+
+/* 1500px 이상: 기존 왼쪽 고정 카드/버튼 사용 */
+@media (min-width: 1500px) {
+  .mobile-top-nav {
+    display: none !important;
+  }
+
   .profile-card {
-    max-width: 92%;
+    display: block;
   }
 
   .project-floating-nav {
-    width: 92%;
-    flex-direction: column;
-  }
-
-  .project-floating-nav a {
-    width: 100%;
-  }
-
-  .hero-main h1 {
-    font-size: clamp(2.6rem, 18vw, 4rem);
+    display: flex;
   }
 }
+
+/* 1499px 이하: 왼쪽 카드/버튼 숨기고 상단 메뉴 사용 */
+@media (max-width: 1499px) {
+  .mobile-top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+
+    background: rgba(15, 15, 18, 0.92);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+  }
+
+  .top-logo {
+    color: #ffffff;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .top-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .top-nav-links a {
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    color: #dcdcdc;
+    font-size: 0.88rem;
+    background: rgba(255, 255, 255, 0.06);
+    transition: 0.2s;
+  }
+
+  .top-nav-links a:hover {
+    color: #ffffff;
+    background: rgba(199, 43, 43, 0.28);
+  }
+
+  /* 왼쪽 프로필 카드 숨김 */
+  .profile-card {
+    display: none !important;
+  }
+
+  /* 상세 페이지 왼쪽 이동 버튼 숨김 */
+  .project-floating-nav {
+    display: none !important;
+  }
+
+  /* 본문은 중앙 정렬 */
+  .profile-hero,
+  main,
+  .footer {
+    margin-left: 0 !important;
+  }
+
+  .hero-layout {
+    display: block;
+  }
+
+  .hero-main {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  .profile-hero .container,
+  main .container,
+  .footer .container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+  }
+}
+
+/* 모바일 화면에서는 메뉴를 2줄 구조로 */
+@media (max-width: 760px) {
+  .mobile-top-nav {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0.85rem 1rem;
+  }
+
+  .top-nav-links {
+    justify-content: flex-start;
+  }
+
+  .top-nav-links a {
+    font-size: 0.78rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .top-logo {
+    font-size: 0.95rem;
+  }
+}
+
