@@ -644,3 +644,72 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ================================
+   Project Detail Navigation
+================================ */
+
+.project-floating-nav {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.project-floating-nav a {
+  padding: 0.65rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(29, 29, 35, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #eaeaea;
+  font-size: 0.85rem;
+  backdrop-filter: blur(10px);
+  transition: 0.2s;
+}
+
+.project-floating-nav a:hover {
+  background: rgba(255, 90, 90, 0.2);
+  border-color: rgba(255, 90, 90, 0.5);
+  transform: translateX(-4px);
+}
+
+.project-bottom-nav {
+  padding: 2.5rem 0 5rem;
+  background: #141418;
+}
+
+.project-bottom-nav .container {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.project-bottom-nav a {
+  min-width: 150px;
+  text-align: center;
+}
+
+/* 모바일에서는 오른쪽 고정 버튼 대신 아래쪽에 작게 고정 */
+@media (max-width: 900px) {
+  .project-floating-nav {
+    right: 50%;
+    top: auto;
+    bottom: 1rem;
+    transform: translateX(50%);
+    flex-direction: row;
+    background: rgba(15, 15, 18, 0.85);
+    padding: 0.5rem;
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+  }
+
+  .project-floating-nav a {
+    padding: 0.55rem 0.75rem;
+    font-size: 0.78rem;
+  }
+}
