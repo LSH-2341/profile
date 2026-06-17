@@ -152,6 +152,111 @@
 
     <section class="section">
       <div class="container">
+        <h2 class="section-title">System Flow</h2>
+    
+        <div class="flow-section">
+    
+          <div class="flow-card">
+            <h3>Overall Game Flow</h3>
+            <p>
+              Deadline은 5층에서 시작해 각 층의 퍼즐을 해결하고,
+              크리처를 피해 생존하며 최종적으로 1층의 문을 열고 탈출하는 구조로 진행됩니다.
+            </p>
+    
+            <div class="flow-line">
+              <div class="flow-step">5층 시작</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">층별 탐색</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">퍼즐 / 단서 해결</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">다음 층 이동</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step warning">크리처 회피</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">1층 도착</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step safe">최종 탈출</div>
+            </div>
+          </div>
+    
+          <div class="flow-card">
+            <h3>Stare & Flashlight Creature Flow</h3>
+            <p>
+              이 크리처는 플레이어의 시점과 손전등 조건이 동시에 만족될 때 멈추는 구조입니다.
+              손전등은 일정 시간마다 고장나도록 설정되어 있어, 플레이어는 무작위로 제시되는 숫자를 입력해 수리해야 합니다.
+            </p>
+    
+            <div class="flow-line">
+              <div class="flow-step">크리처 접근</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">플레이어 시점 확인</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">손전등 빛 판정</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step safe">둘 다 만족 시 정지</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step warning">조건 해제 시 추격</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">손전등 고장</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">랜덤 숫자 입력 수리</div>
+            </div>
+          </div>
+    
+          <div class="flow-card">
+            <h3>Sound Reaction Creature Flow</h3>
+            <p>
+              소리 감지 크리처는 플레이어의 발소리, 키패드 오답, 마이크 입력 등으로 발생한 소리에 반응합니다.
+              소리가 발생한 위치로 이동한 뒤, 플레이어를 발견하면 추격하고 놓치면 탐색 후 원래 상태로 돌아갑니다.
+            </p>
+    
+            <div class="flow-line">
+              <div class="flow-step">순찰 / 대기</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">소리 발생</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">소리 위치 저장</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step warning">소리 위치로 이동</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">플레이어 탐색</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step warning">발견 시 추격</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step safe">놓치면 복귀</div>
+            </div>
+          </div>
+    
+          <div class="flow-card">
+            <h3>Fire Extinguisher Escape Flow</h3>
+            <p>
+              모든 크리처에게 공통으로 적용되는 탈출 로직입니다.
+              플레이어가 소화기를 들고 있는 상태에서 크리처에게 잡히면,
+              스페이스 입력으로 소화기를 발사해 크리처를 잠시 사라지게 만들 수 있습니다.
+            </p>
+    
+            <div class="flow-line">
+              <div class="flow-step warning">크리처에게 잡힘</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">소화기 보유 여부 확인</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">스페이스 입력</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step safe">소화기 발사</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">크리처 일시 제거</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step warning">일정 시간 후 재등장</div>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
         <h2 class="section-title">Data Structure & Algorithm</h2>
 
         <div class="problem-list">
