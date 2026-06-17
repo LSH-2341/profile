@@ -178,6 +178,155 @@
 
     <section class="section">
       <div class="container">
+        <h2 class="section-title">System Flow</h2>
+    
+        <div class="flow-section">
+    
+          <div class="flow-card">
+            <h3>Overall Game Flow</h3>
+            <p>
+              Sinking Island는 가장 낮은 해변가에서 시작해 몬스터를 처치하며 성장하고,
+              절벽과 길을 따라 점점 높은 층으로 이동하는 생존 탈출 게임입니다.
+              각 층의 보스를 처치해야 마지막 층의 보트를 고칠 수 있으며,
+              플레이어는 점차 잠겨가는 섬에서 탈출해야 합니다.
+            </p>
+    
+            <div class="branch-flow">
+    
+              <div class="branch-row">
+                <div class="branch-step">해변가 시작</div>
+                <div class="branch-arrow">→</div>
+                <div class="branch-step warning">몬스터 조우</div>
+                <div class="branch-arrow">→</div>
+                <div class="branch-step">몬스터 처치</div>
+                <div class="branch-arrow">→</div>
+                <div class="branch-step safe">랜덤 스탯 물약 획득</div>
+              </div>
+    
+              <div class="branch-row" style="margin-top: 1rem;">
+                <div class="branch-step">능력치 강화</div>
+                <div class="branch-arrow">→</div>
+                <div class="branch-step">절벽 / 길 탐색</div>
+                <div class="branch-arrow">→</div>
+                <div class="branch-step">상층 이동</div>
+                <div class="branch-arrow">→</div>
+                <div class="branch-step warning">더 강한 몬스터 등장</div>
+              </div>
+    
+              <div class="branch-split">
+    
+                <div class="branch-path no">
+                  <h4>Normal Progress</h4>
+    
+                  <div class="branch-row">
+                    <div class="branch-step">층별 전투</div>
+                    <div class="branch-arrow">→</div>
+                    <div class="branch-step">성장 반복</div>
+                    <div class="branch-arrow">→</div>
+                    <div class="branch-step">다음 층 진입</div>
+                  </div>
+                </div>
+    
+                <div class="branch-path yes">
+                  <h4>Escape Objective</h4>
+    
+                  <div class="branch-row">
+                    <div class="branch-step warning">층별 보스 조우</div>
+                    <div class="branch-arrow">→</div>
+                    <div class="branch-step">보스 처치</div>
+                    <div class="branch-arrow">→</div>
+                    <div class="branch-step safe">보트 수리 조건 충족</div>
+                  </div>
+    
+                  <div class="branch-row" style="margin-top: 0.9rem;">
+                    <div class="branch-step">마지막 층 도착</div>
+                    <div class="branch-arrow">→</div>
+                    <div class="branch-step safe">보트 수리</div>
+                    <div class="branch-arrow">→</div>
+                    <div class="branch-step safe">섬 탈출</div>
+                  </div>
+                </div>
+    
+              </div>
+    
+            </div>
+          </div>
+    
+          <div class="flow-card">
+            <h3>Water Rising Flow</h3>
+            <p>
+              시간이 지날수록 섬의 수위가 상승하며, 낮은 층부터 점차 잠기도록 구성했습니다.
+              이 시스템은 플레이어가 한 장소에 오래 머무르지 못하게 만들고,
+              더 높은 층으로 이동해야 하는 압박을 제공합니다.
+            </p>
+    
+            <div class="flow-line">
+              <div class="flow-step">시간 경과</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step warning">수위 상승</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">낮은 층 침수</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step warning">플레이어 압박</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">상층 이동 유도</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step safe">탈출 루트 탐색</div>
+            </div>
+          </div>
+    
+          <div class="flow-card">
+            <h3>Monster & Reward Flow</h3>
+            <p>
+              몬스터를 처치하면 랜덤 스탯 물약이 드랍되고,
+              플레이어는 이를 통해 체력, 공격력 등 전투 능력을 강화할 수 있습니다.
+              층이 높아질수록 몬스터의 스탯이 증가하기 때문에 성장과 전투가 반복되는 구조입니다.
+            </p>
+    
+            <div class="flow-line">
+              <div class="flow-step warning">몬스터 등장</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">전투</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">몬스터 처치</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step safe">랜덤 스탯 물약 드랍</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">플레이어 강화</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step warning">상층의 강한 몬스터 상대</div>
+            </div>
+          </div>
+    
+          <div class="flow-card">
+            <h3>Height-based Difficulty Flow</h3>
+            <p>
+              맵은 층과 높이를 기준으로 구성되어 있으며,
+              플레이어가 더 높은 구역으로 이동할수록 더 강한 몬스터와 보스를 만나게 됩니다.
+              이를 통해 수위 상승에 따른 이동 압박과 난이도 상승을 함께 연결했습니다.
+            </p>
+    
+            <div class="flow-line">
+              <div class="flow-step">낮은 해변가</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">중간 층 진입</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step warning">몬스터 스탯 증가</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">상층 진입</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step warning">보스 등장</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step safe">탈출 조건 달성</div>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
         <h2 class="section-title">Data Structure & Algorithm</h2>
 
         <div class="problem-list">
