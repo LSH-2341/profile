@@ -161,93 +161,178 @@
         <div class="flow-section">
     
           <div class="flow-card">
-            <h3>Core Game Loop</h3>
+            <h3>Overall Game Loop</h3>
             <p>
-              VANTA의 기본 플레이 흐름은 전투, 성장, 위험 증가, 재도전으로 이어지도록 설계했습니다.
-              플레이어가 강해질수록 잠식률이 상승하고, 그에 따라 적의 압박도 함께 증가합니다.
-              (잠식률: VANTA 게임의 난이도 상승 요소)
+              VANTA는 몬스터를 처치해 경험치를 얻고, 레벨업을 통해 무기와 스킬을 강화하며
+              더 오래 생존하는 3인칭 생존 액션 로그라이트 게임입니다.
+              플레이어가 강해질수록 잠식률이 상승하고, 그에 따라 적의 압박과 보스 난이도도 함께 증가합니다.
             </p>
     
-            <div class="flow-line">
-              <div class="flow-step">몬스터 처치</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">경험치 획득</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">레벨업</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">3개 선택지</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">스탯 / 무기 강화</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">잠식률 상승</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">더 강한 적 등장</div>
+            <div class="flow-steps">
+              <div class="flow-step">
+                <span class="flow-step-number">STEP 01</span>
+                <div class="flow-step-title">몬스터 처치</div>
+              </div>
+    
+              <div class="flow-step safe">
+                <span class="flow-step-number">STEP 02</span>
+                <div class="flow-step-title">경험치 획득 및 레벨업</div>
+              </div>
+    
+              <div class="flow-step warning">
+                <span class="flow-step-number">STEP 03</span>
+                <div class="flow-step-title">업그레이드 선택과 잠식률 상승</div>
+              </div>
+    
+              <div class="flow-step danger">
+                <span class="flow-step-number">STEP 04</span>
+                <div class="flow-step-title">강화된 적과 보스 등장</div>
+              </div>
+            </div>
+    
+            <div class="flow-branches">
+              <div class="flow-branch good">
+                <h4>성장 루프</h4>
+                <div class="flow-mini-steps">
+                  <div class="flow-mini-step">적 처치</div>
+                  <div class="flow-mini-step safe">경험치 오브 획득</div>
+                  <div class="flow-mini-step">레벨업 패널 표시</div>
+                  <div class="flow-mini-step safe">스탯 / 스킬 / 무기 강화</div>
+                </div>
+              </div>
+    
+              <div class="flow-branch bad">
+                <h4>위험 증가 루프</h4>
+                <div class="flow-mini-steps">
+                  <div class="flow-mini-step warning">강한 선택지를 고를수록 잠식률 증가</div>
+                  <div class="flow-mini-step warning">적 스폰 수와 난이도 상승</div>
+                  <div class="flow-mini-step danger">일정 시간마다 보스 등장</div>
+                  <div class="flow-mini-step danger">생존 시간이 길수록 압박 증가</div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="flow-note">
+              VANTA의 핵심은 단순한 성장보다, 성장 선택이 다시 위험 증가로 이어지는 구조입니다.
+              플레이어는 강해지는 대신 더 큰 압박을 감수해야 합니다.
             </div>
           </div>
     
           <div class="flow-card">
-            <h3>EnemyRegistry Flow</h3>
+            <h3>Level Up & Upgrade Flow</h3>
             <p>
-              기존에는 공격, 스킬, 스폰 제한에서 씬 전체의 적을 반복 탐색했습니다.
-              이를 개선하기 위해 적이 생성될 때 등록되고, 사망하거나 사라질 때 제거되는 EnemyRegistry 구조를 도입했습니다.
+              플레이어가 경험치를 모아 레벨업하면 무작위 업그레이드 선택지 3개가 표시됩니다.
+              선택한 업그레이드는 플레이어의 스탯, 대시, 스킬, 자동 공격, 번개 무기 등에 즉시 반영됩니다.
             </p>
     
-            <div class="flow-line">
-              <div class="flow-step">Enemy 생성</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">Registry 등록</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">자동 공격 / 스킬에서 목록 사용</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">Enemy 사망</div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">Registry 제거</div>
+            <div class="flow-steps">
+              <div class="flow-step">
+                <span class="flow-step-number">STEP 01</span>
+                <div class="flow-step-title">경험치 누적</div>
+              </div>
+    
+              <div class="flow-step safe">
+                <span class="flow-step-number">STEP 02</span>
+                <div class="flow-step-title">레벨업 발생</div>
+              </div>
+    
+              <div class="flow-step">
+                <span class="flow-step-number">STEP 03</span>
+                <div class="flow-step-title">중복 없는 3개 선택지 표시</div>
+              </div>
+    
+              <div class="flow-step safe">
+                <span class="flow-step-number">STEP 04</span>
+                <div class="flow-step-title">선택 효과 즉시 적용</div>
+              </div>
+            </div>
+    
+            <div class="flow-branches">
+              <div class="flow-branch good">
+                <h4>업그레이드 후보 생성</h4>
+                <div class="flow-mini-steps">
+                  <div class="flow-mini-step">전체 업그레이드 목록 확인</div>
+                  <div class="flow-mini-step">무작위 후보 선택</div>
+                  <div class="flow-mini-step">중복 선택지 제거</div>
+                  <div class="flow-mini-step safe">3개의 선택지를 UI에 표시</div>
+                </div>
+              </div>
+    
+              <div class="flow-branch good">
+                <h4>선택 결과 적용</h4>
+                <div class="flow-mini-steps">
+                  <div class="flow-mini-step">플레이어가 선택지 클릭</div>
+                  <div class="flow-mini-step safe">체력 / 공격력 / 범위 / 쿨타임 등 반영</div>
+                  <div class="flow-mini-step">대시, E스킬, 번개 무기 강화 가능</div>
+                  <div class="flow-mini-step warning">선택에 따라 잠식률 상승</div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="flow-note">
+              레벨업 시스템은 단순 스탯 증가가 아니라,
+              플레이어가 매번 다른 빌드를 선택하고 그 선택이 난이도 변화로 이어지도록 설계했습니다.
             </div>
           </div>
     
-        </div>
-      </div>
-    </section>
-
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Data Structure & Algorithm</h2>
-
-        <div class="problem-list">
-          <div class="problem-item">
-            <h3>EnemyRegistry 기반 적 목록 관리</h3>
+          <div class="flow-card">
+            <h3>EnemyRegistry Optimization Flow</h3>
             <p>
-              기존에는 자동 공격, 번개 무기, 스킬, 스폰 제한에서 FindObjectsOfType 기반으로
-              씬 전체의 적을 탐색했습니다. 몬스터 수가 증가하는 생존 액션 게임 구조에 맞게
-              EnemyRegistry를 도입하여 살아있는 적 목록을 관리하도록 개선했습니다.
+              기존에는 자동 공격, 번개 무기, 스킬, 스폰 제한 로직에서 씬 전체의 적을 반복 탐색했습니다.
+              이를 개선하기 위해 활성화된 적을 EnemyRegistry에 등록하고,
+              공격 시스템들이 이 목록을 참조하도록 구조를 변경했습니다.
             </p>
+    
+            <div class="flow-steps">
+              <div class="flow-step">
+                <span class="flow-step-number">STEP 01</span>
+                <div class="flow-step-title">Enemy 생성 또는 활성화</div>
+              </div>
+    
+              <div class="flow-step safe">
+                <span class="flow-step-number">STEP 02</span>
+                <div class="flow-step-title">EnemyRegistry에 등록</div>
+              </div>
+    
+              <div class="flow-step">
+                <span class="flow-step-number">STEP 03</span>
+                <div class="flow-step-title">공격 / 스킬 시스템에서 목록 참조</div>
+              </div>
+    
+              <div class="flow-step danger">
+                <span class="flow-step-number">STEP 04</span>
+                <div class="flow-step-title">Enemy 사망 시 Registry에서 제거</div>
+              </div>
+            </div>
+    
+            <div class="flow-branches">
+              <div class="flow-branch bad">
+                <h4>기존 구조의 문제</h4>
+                <div class="flow-mini-steps">
+                  <div class="flow-mini-step warning">공격마다 씬 전체 Enemy 탐색</div>
+                  <div class="flow-mini-step warning">자동 공격, 번개, 스킬에서 탐색 반복</div>
+                  <div class="flow-mini-step danger">적 수가 많아질수록 불필요한 연산 증가</div>
+                  <div class="flow-mini-step danger">범위 스킬 적용 중 리스트 변경 문제 발생</div>
+                </div>
+              </div>
+    
+              <div class="flow-branch good">
+                <h4>개선된 구조</h4>
+                <div class="flow-mini-steps">
+                  <div class="flow-mini-step safe">활성 적 목록을 Registry에서 관리</div>
+                  <div class="flow-mini-step">자동 공격 / 번개 / 스킬이 같은 목록 참조</div>
+                  <div class="flow-mini-step safe">범위 안 적을 임시 타겟 리스트에 먼저 저장</div>
+                  <div class="flow-mini-step safe">그 후 데미지를 적용해 누락 문제 해결</div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="flow-note">
+              EnemyRegistry 개선은 단순 코드 정리가 아니라,
+              적 탐색 비용을 줄이고 범위 스킬 적용 중 적이 사망하면서 리스트가 변경되어 일부 적이 데미지를 받지 않는 문제를 해결한 작업입니다.
+            </div>
           </div>
-
-          <div class="problem-item">
-            <h3>거리 기반 타겟 탐색</h3>
-            <p>
-              자동 공격은 등록된 적 목록 중 플레이어와 가장 가까운 적을 탐색하여 공격 대상으로 지정합니다.
-              반복적인 거리 비교에서는 Vector3.Distance 대신 sqrMagnitude를 사용하여 불필요한 제곱근 계산을 줄였습니다.
-            </p>
-          </div>
-
-          <div class="problem-item">
-            <h3>중복 없는 랜덤 업그레이드 선택</h3>
-            <p>
-              전체 업그레이드 후보 목록에서 무작위 선택지를 뽑고, 이미 선택된 항목은 후보에서 제거하여
-              레벨업 시 중복 없는 3개의 선택지가 등장하도록 구현했습니다.
-            </p>
-          </div>
-
-          <div class="problem-item">
-            <h3>잠식률 기반 난이도 조절</h3>
-            <p>
-              플레이어가 강력한 선택지를 고를수록 잠식률이 상승하고,
-              잠식률이 적 스폰 간격과 최대 적 수에 영향을 주도록 구성했습니다.
-              이를 통해 성장과 위험이 동시에 증가하는 게임 흐름을 만들었습니다.
-            </p>
-          </div>
+    
         </div>
       </div>
     </section>
