@@ -126,6 +126,60 @@
       </div>
     </section>
 
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">System Flow</h2>
+    
+        <div class="flow-section">
+    
+          <div class="flow-card">
+            <h3>Core Game Loop</h3>
+            <p>
+              VANTA의 기본 플레이 흐름은 전투, 성장, 위험 증가, 재도전으로 이어지도록 설계했습니다.
+              플레이어가 강해질수록 잠식률이 상승하고, 그에 따라 적의 압박도 함께 증가합니다.
+            </p>
+    
+            <div class="flow-line">
+              <div class="flow-step">몬스터 처치</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">경험치 획득</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">레벨업</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">3개 선택지</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">스탯 / 무기 강화</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">잠식률 상승</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">더 강한 적 등장</div>
+            </div>
+          </div>
+    
+          <div class="flow-card">
+            <h3>EnemyRegistry Flow</h3>
+            <p>
+              기존에는 공격, 스킬, 스폰 제한에서 씬 전체의 적을 반복 탐색했습니다.
+              이를 개선하기 위해 적이 생성될 때 등록되고, 사망하거나 사라질 때 제거되는 EnemyRegistry 구조를 도입했습니다.
+            </p>
+    
+            <div class="flow-line">
+              <div class="flow-step">Enemy 생성</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">Registry 등록</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">자동 공격 / 스킬에서 목록 사용</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">Enemy 사망</div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">Registry 제거</div>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    </section>
+
     <section class="section dark">
       <div class="container">
         <h2 class="section-title">Screenshots</h2>
