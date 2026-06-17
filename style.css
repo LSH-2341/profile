@@ -968,3 +968,73 @@ main,
   }
 }
 
+/* ================================
+   System Flow Diagram
+================================ */
+
+.flow-section {
+  display: grid;
+  gap: 2rem;
+}
+
+.flow-card {
+  padding: 1.6rem;
+  background: #1d1d23;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+}
+
+.flow-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.flow-card p {
+  color: #cfcfcf;
+  margin-bottom: 1.4rem;
+}
+
+.flow-line {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.flow-step {
+  padding: 0.8rem 1rem;
+  min-width: 130px;
+  text-align: center;
+  border-radius: 14px;
+  background: rgba(255, 90, 90, 0.12);
+  border: 1px solid rgba(255, 90, 90, 0.28);
+  color: #f2f2f2;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.flow-arrow {
+  color: #ff7777;
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 720px) {
+  .flow-line {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .flow-step {
+    width: 100%;
+  }
+
+  .flow-arrow {
+    text-align: center;
+    transform: rotate(90deg);
+  }
+}
+
+
+
