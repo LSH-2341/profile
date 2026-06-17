@@ -734,3 +734,131 @@ html {
     font-size: 0.7rem;
   }
 }
+
+/* ================================
+   Responsive Layout Fix
+   왼쪽 프로필/프로젝트 네비가 본문을 가리지 않도록 처리
+================================ */
+
+/* 기본값: 좁은 화면에서는 고정 해제 */
+.profile-card {
+  position: static !important;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 2rem;
+  transform: none !important;
+}
+
+.profile-hero,
+main,
+.footer {
+  margin-left: 0 !important;
+}
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.hero-main {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* 프로젝트 상세 페이지 네비도 기본은 일반 배치 */
+.project-floating-nav {
+  position: static !important;
+  transform: none !important;
+
+  width: min(720px, 92%);
+  margin: 0 auto 2rem;
+  padding: 0.8rem;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+
+  background: rgba(29, 29, 35, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+}
+
+.project-floating-nav a {
+  min-width: 140px;
+  text-align: center;
+}
+
+
+/* ================================
+   아주 넓은 화면에서만 왼쪽 고정 적용
+================================ */
+
+@media (min-width: 1500px) {
+  .profile-card {
+    position: absolute !important;
+    left: 2rem !important;
+    top: 50vh;
+    width: 220px;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    z-index: 1000;
+
+    margin: 0;
+    padding: 1.1rem;
+    border-radius: 20px;
+    transform: none !important;
+  }
+
+  .hero-layout {
+    display: block;
+  }
+
+  .hero-main {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .project-floating-nav {
+    position: fixed !important;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%) !important;
+    width: 190px;
+    margin: 0;
+
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  .project-floating-nav a {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+
+/* ================================
+   작은 화면 보정
+================================ */
+
+@media (max-width: 720px) {
+  .profile-card {
+    max-width: 92%;
+  }
+
+  .project-floating-nav {
+    width: 92%;
+    flex-direction: column;
+  }
+
+  .project-floating-nav a {
+    width: 100%;
+  }
+
+  .hero-main h1 {
+    font-size: clamp(2.6rem, 18vw, 4rem);
+  }
+}
