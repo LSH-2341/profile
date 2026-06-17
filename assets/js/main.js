@@ -33,21 +33,19 @@ if (profileCard) {
   let targetScroll = window.scrollY;
 
   function updateProfileCardPosition() {
-    if (window.innerWidth >= 1200) {
-      targetScroll = window.scrollY;
-
-      // 숫자가 작을수록 더 늦게 따라옴
-      currentScroll += (targetScroll - currentScroll) * 0.06;
-
-      const cardHeight = profileCard.offsetHeight;
-      const centerY = window.innerHeight / 2;
-      const topPosition = currentScroll + centerY - cardHeight / 2;
-
-      profileCard.style.top = `${topPosition}px`;
-    } else {
-      profileCard.style.top = "";
-    }
-
+    if (window.innerWidth >= 1500) {
+        targetScroll = window.scrollY;
+      
+        currentScroll += (targetScroll - currentScroll) * 0.04;
+      
+        const cardHeight = profileCard.offsetHeight;
+        const centerY = window.innerHeight / 2;
+        const topPosition = currentScroll + centerY - cardHeight / 2;
+      
+        profileCard.style.top = `${topPosition}px`;
+      } else {
+        profileCard.style.top = "";
+      }
     requestAnimationFrame(updateProfileCardPosition);
   }
 
