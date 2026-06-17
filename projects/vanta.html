@@ -26,8 +26,9 @@
       <h2>3인칭 생존 액션 로그라이트</h2>
 
       <p class="hero-text">
-        몬스터를 처치하고 경험치를 획득해 성장하며, 잠식률에 따라 위험도 함께 증가하는
-        3인칭 생존 액션 로그라이트 개인 프로젝트입니다.
+         VANTA는 몬스터를 처치해 경험치를 얻고, 레벨업 선택지를 통해 무기와 스킬을 강화하며
+        최대한 오래 생존하는 3인칭 생존 액션 로그라이트 게임입니다.
+        플레이어가 강해질수록 잠식률이 상승하고, 이에 따라 적의 수와 난이도도 함께 증가하도록 설계했습니다.
       </p>
       
     </div>
@@ -68,27 +69,53 @@
     <section class="section">
       <div class="container">
         <h2 class="section-title">Project Overview</h2>
-
+    
         <div class="detail-grid">
           <div class="detail-card">
-            <h3>프로젝트 정보</h3>
+            <h3>Game Concept</h3>
+            <p>
+              VANTA는 3인칭 시점에서 몰려오는 적을 처치하고, 경험치를 획득해 성장하며
+              최대한 오래 생존하는 액션 로그라이트 게임입니다.
+            </p>
+            <p>
+              플레이어는 레벨업마다 무작위로 제시되는 3개의 선택지 중 하나를 고르며,
+              선택한 업그레이드에 따라 공격 방식, 이동 능력, 생존 방식이 달라지도록 설계했습니다.
+            </p>
+          </div>
+    
+          <div class="detail-card">
+            <h3>Player Goal</h3>
+            <p>
+              플레이어의 목표는 끊임없이 등장하는 적과 주기적으로 등장하는 보스를 상대하며
+              최대한 오래 살아남는 것입니다.
+            </p>
+            <p>
+              강한 업그레이드를 선택할수록 잠식률이 상승하고,
+              잠식률은 적 스폰 수와 난이도 상승으로 이어져 성장과 위험이 함께 증가하는 구조를 만들었습니다.
+            </p>
+          </div>
+    
+          <div class="detail-card">
+            <h3>My Role</h3>
             <ul>
-              <li>프로젝트명: VANTA</li>
-              <li>장르: 3인칭 생존 액션 로그라이트</li>
-              <li>개발 기간: 2026.05.29 ~ 진행 중</li>
-              <li>개발 형태: 개인 프로젝트</li>
-              <li>플랫폼: PC</li>
-              <li>개발 환경: Unity, C#</li>
-              <li>현재 목표: 플레이 가능한 프로토타입 완성</li>
+              <li>개인 프로젝트로 전체 기획 및 구현 진행</li>
+              <li>플레이어 이동, 대시, 자동 공격, E스킬 구현</li>
+              <li>경험치, 레벨업, 3개 선택지 업그레이드 시스템 구현</li>
+              <li>적 스폰, 난이도 상승, 보스 등장 구조 구현</li>
+              <li>EnemyRegistry 기반 적 탐색 구조 개선</li>
+              <li>UI, HUD, 랭킹 및 결과 흐름 구성</li>
             </ul>
           </div>
-
+    
           <div class="detail-card">
-            <h3>담당 역할</h3>
-            <p>
-              게임 기획, 시스템 설계, Unity 클라이언트 개발, UI 구현, 전투 시스템,
-              성장 시스템, 적 스폰 및 난이도 상승 구조를 개인으로 개발했습니다.
-            </p>
+            <h3>Development Focus</h3>
+            <ul>
+              <li>3인칭 액션 기반의 생존 전투 흐름</li>
+              <li>레벨업 선택지에 따른 빌드 변화</li>
+              <li>잠식률을 통한 성장과 위험 증가 연결</li>
+              <li>자동 공격, 번개 무기, E스킬, 대시 시스템</li>
+              <li>EnemyRegistry를 활용한 적 탐색 최적화</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -97,29 +124,61 @@
     <section class="section dark">
       <div class="container">
         <h2 class="section-title">Core Systems</h2>
-
-        <div class="highlight-grid">
-          <div class="highlight-card">
+    
+        <div class="detail-grid">
+          <div class="detail-card">
             <h3>Enemy Spawn & Difficulty System</h3>
             <p>
-              생존 시간과 잠식률에 따라 적 스폰 간격, 최대 적 수, 적 능력치가 변화하도록 구성했습니다.
-              플레이어가 강해질수록 게임의 위험도 함께 증가하는 구조를 만들었습니다.
+              시간이 지날수록 적이 지속적으로 생성되며,
+              플레이어의 성장과 잠식률에 따라 적의 수와 압박이 증가하도록 구현했습니다.
+              이를 통해 플레이 시간이 길어질수록 자연스럽게 난이도가 상승하도록 구성했습니다.
             </p>
           </div>
-
-          <div class="highlight-card">
-            <h3>EXP & Level Up Choice System</h3>
+    
+          <div class="detail-card">
+            <h3>Level Up & Upgrade Choice System</h3>
             <p>
-              몬스터 처치 후 경험치 구슬을 획득하고, 레벨업 시 3개의 랜덤 업그레이드 선택지를 제공하여
-              매 플레이마다 다른 성장 흐름을 만들 수 있도록 구현했습니다.
+              몬스터를 처치하면 경험치 오브가 생성되고,
+              경험치를 일정량 모으면 레벨업이 발생합니다.
+              레벨업 시 중복 없는 3개의 선택지가 표시되며,
+              플레이어는 그중 하나를 선택해 스탯, 스킬, 무기 성능을 강화할 수 있습니다.
             </p>
           </div>
-
-          <div class="highlight-card">
-            <h3>Skill & Auto Attack System</h3>
+    
+          <div class="detail-card">
+            <h3>Corruption Rate System</h3>
             <p>
-              가장 가까운 적을 탐색해 자동으로 투사체를 발사하고, E스킬과 번개 무기를 통해
-              범위 공격과 자동 타격이 가능하도록 구성했습니다.
+              강한 업그레이드를 선택할수록 잠식률이 상승하도록 설계했습니다.
+              잠식률은 플레이어가 강해지는 대가로 적의 압박도 함께 증가시키는 역할을 하며,
+              단순 성장보다 선택에 따른 위험을 만들기 위해 사용했습니다.
+            </p>
+          </div>
+    
+          <div class="detail-card">
+            <h3>Combat Skill System</h3>
+            <p>
+              기본 자동 공격, 번개 무기, E스킬, 대시를 구현했습니다.
+              플레이어는 자동 공격으로 주변 적을 공격하고,
+              E스킬과 번개 무기를 통해 다수의 적에게 대응하며,
+              대시를 사용해 위기 상황에서 빠르게 회피할 수 있습니다.
+            </p>
+          </div>
+    
+          <div class="detail-card">
+            <h3>Boss Encounter System</h3>
+            <p>
+              일정 시간마다 보스가 등장하도록 구성했습니다.
+              보스는 일반 적보다 높은 체력과 압박을 제공하며,
+              생존 시간이 길어질수록 플레이어에게 더 큰 전투 목표를 제공합니다.
+            </p>
+          </div>
+    
+          <div class="detail-card">
+            <h3>EnemyRegistry Optimization</h3>
+            <p>
+              기존에는 공격과 스킬 로직에서 씬 전체의 적을 반복적으로 탐색했습니다.
+              이를 개선하기 위해 활성화된 적을 EnemyRegistry에 등록하고,
+              자동 공격, 번개 무기, E스킬이 같은 적 목록을 참조하도록 구조를 변경했습니다.
             </p>
           </div>
         </div>
@@ -337,32 +396,123 @@
       </div>
     </section>
 
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Data Structure & Algorithm</h2>
+    
+        <div class="detail-grid">
+          <div class="detail-card">
+            <h3>Random Upgrade Selection</h3>
+            <p>
+              전체 업그레이드 후보 목록에서 무작위로 선택지를 뽑고,
+              중복되지 않는 3개의 업그레이드가 UI에 표시되도록 구현했습니다.
+              선택된 업그레이드는 플레이어의 스탯, 무기, 스킬, 대시 능력에 즉시 반영됩니다.
+            </p>
+          </div>
+    
+          <div class="detail-card">
+            <h3>Corruption-based Difficulty Scaling</h3>
+            <p>
+              업그레이드 선택에 따라 잠식률 값을 증가시키고,
+              잠식률과 시간 흐름을 기준으로 적 스폰 압박과 전투 난이도가 상승하도록 구성했습니다.
+              이를 통해 플레이어의 성장과 위험 증가가 함께 진행되도록 만들었습니다.
+            </p>
+          </div>
+    
+          <div class="detail-card">
+            <h3>EnemyRegistry List Management</h3>
+            <p>
+              적이 생성되거나 활성화될 때 EnemyRegistry에 등록하고,
+              사망하거나 비활성화될 때 목록에서 제거되도록 구현했습니다.
+              공격 시스템은 씬 전체를 다시 탐색하지 않고 이 목록을 참조해 타겟을 찾습니다.
+            </p>
+          </div>
+    
+          <div class="detail-card">
+            <h3>Target Search Optimization</h3>
+            <p>
+              자동 공격, 번개 무기, E스킬이 EnemyRegistry의 적 목록을 기반으로 타겟을 탐색하도록 수정했습니다.
+              거리 비교에는 불필요한 연산을 줄이기 위해 Vector3.Distance 대신 sqrMagnitude 방식을 사용할 수 있도록 구조를 개선했습니다.
+            </p>
+          </div>
+    
+          <div class="detail-card">
+            <h3>Area Skill Target Buffer</h3>
+            <p>
+              범위 스킬 적용 중 적이 사망하면 Registry 목록이 변경되어 일부 적이 데미지를 받지 않는 문제가 발생할 수 있었습니다.
+              이를 해결하기 위해 먼저 범위 안의 적을 임시 타겟 리스트에 저장하고,
+              그 후 저장된 목록을 순회하며 데미지를 적용하도록 수정했습니다.
+            </p>
+          </div>
+    
+          <div class="detail-card">
+            <h3>Survival Record Flow</h3>
+            <p>
+              플레이어의 생존 시간과 결과를 UI에 표시하고,
+              최고 기록을 확인할 수 있도록 구성했습니다.
+              이를 통해 플레이어가 사망 후에도 기록을 기준으로 재도전할 수 있는 반복 구조를 만들었습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section dark">
       <div class="container">
         <h2 class="section-title">Problem Solving</h2>
-
-        <div class="problem-list">
-          <div class="problem-item">
-            <h3>FindObjectsOfType 기반 적 탐색 구조 개선</h3>
+    
+        <div class="detail-grid">
+          <div class="detail-card">
+            <h3>Enemy Search Performance</h3>
             <p>
-              초기 구현에서는 공격이나 스킬 사용 시마다 씬 전체의 적을 탐색했습니다.
-              적 수가 계속 증가하는 게임 구조에서는 비효율적일 수 있다고 판단하여,
-              적이 생성될 때 등록되고 사라질 때 제거되는 EnemyRegistry 구조로 개선했습니다.
+              초기 구조에서는 자동 공격, 번개 무기, E스킬, 스폰 제한 로직에서
+              씬 전체의 EnemyHealth를 반복적으로 탐색했습니다.
+              적 수가 많아질수록 불필요한 탐색이 증가하고,
+              여러 시스템에서 같은 탐색을 반복하는 문제가 있었습니다.
+            </p>
+            <p>
+              이를 해결하기 위해 활성화된 적을 하나의 EnemyRegistry에서 관리하도록 수정했습니다.
+              적이 생성되면 등록되고, 사망하거나 비활성화되면 제거되며,
+              공격과 스킬 시스템은 Registry 목록을 참조하도록 개선했습니다.
             </p>
           </div>
-
-          <div class="problem-item">
-            <h3>범위 스킬 데미지 누락 문제 해결</h3>
+    
+          <div class="detail-card">
+            <h3>Area Skill Damage Missing</h3>
             <p>
-              EnemyRegistry 개선 후 범위 스킬 사용 시 일부 적만 데미지를 받는 문제가 발생했습니다.
-              원인은 데미지 적용 중 적이 사망하면서 Registry 목록에서 제거되고,
-              반복문 인덱스가 밀려 일부 적이 검사되지 않는 것이었습니다.
+              범위 스킬을 사용할 때 일부 적만 데미지를 받는 문제가 발생했습니다.
+              원인은 Registry 목록을 순회하는 도중 적이 죽으면서 OnDisable이 호출되고,
+              그 결과 목록에서 적이 제거되어 인덱스가 밀리는 것이었습니다.
             </p>
-
             <p>
-              이를 해결하기 위해 먼저 범위 안의 적을 임시 타겟 리스트에 저장한 뒤,
-              해당 리스트를 기준으로 데미지를 적용하도록 수정했습니다.
-              이를 통해 리스트 순회 중 데이터 변경으로 인한 누락 문제를 방지했습니다.
+              이를 해결하기 위해 데미지를 바로 적용하지 않고,
+              먼저 범위 안에 들어온 적을 임시 타겟 리스트에 저장했습니다.
+              이후 임시 리스트를 순회하며 데미지를 적용해 적 누락 문제를 해결했습니다.
+            </p>
+          </div>
+    
+          <div class="detail-card">
+            <h3>Growth and Difficulty Balance</h3>
+            <p>
+              단순히 플레이어만 강해지는 구조는 시간이 지날수록 긴장감이 떨어질 수 있었습니다.
+              그래서 업그레이드 선택이 잠식률 상승으로 이어지고,
+              잠식률이 다시 적의 압박 증가로 이어지는 구조를 만들었습니다.
+            </p>
+            <p>
+              이를 통해 플레이어는 강력한 선택지를 고를 수 있지만,
+              그 선택이 더 높은 위험을 불러오는 방식으로 성장과 난이도가 함께 움직이도록 구성했습니다.
+            </p>
+          </div>
+    
+          <div class="detail-card">
+            <h3>Early Gameplay Variety</h3>
+            <p>
+              초반 플레이가 단순한 이동과 자동 공격만으로 반복되면 지루해질 수 있었습니다.
+              이를 보완하기 위해 번개 무기, E스킬, 대시 강화와 같은 선택지를 추가했습니다.
+            </p>
+            <p>
+              플레이어가 레벨업마다 다른 선택지를 고르며 전투 방식이 달라지도록 만들고,
+              여러 성장 방향을 실험할 수 있는 구조로 개선했습니다.
             </p>
           </div>
         </div>
