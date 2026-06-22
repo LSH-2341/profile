@@ -1447,5 +1447,39 @@ main,
   }
 }
 
+/* ================================
+   Project Detail Contact
+================================ */
 
+.project-contact {
+  padding: 3rem 0;
+  background: #101014;
+}
+
+.project-contact-box {
+  padding: 2rem;
+  border-radius: 22px;
+  background: #1d1d23;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.project-contact-box h2 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  color: #ffffff;
+}
+
+.project-contact-box p {
+  color: #cfcfcf;
+  line-height: 1.7;
+  margin-bottom: 1.4rem;
+}
+
+.project-contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
 
