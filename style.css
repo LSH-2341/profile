@@ -1400,6 +1400,52 @@ main,
   }
 }
 
+/* ================================
+   Project Info Section
+================================ */
+
+.project-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.project-info-card {
+  padding: 1.2rem 1.3rem;
+  border-radius: 18px;
+  background: #1d1d23;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.project-info-card span {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #ff7777;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-info-card strong {
+  display: block;
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .project-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .project-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 
 
