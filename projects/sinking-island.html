@@ -453,6 +453,10 @@
               공중이나 잘못된 위치에 생성되는 문제를 줄이고,
               맵 위에 자연스럽게 배치되도록 구현했습니다.
             </p>
+            <p>
+              스폰 위치 간 거리 비교는 반복적으로 실행되기 때문에,
+              Vector3.Distance 대신 sqrMagnitude를 사용해 불필요한 제곱근 연산을 줄이도록 개선했습니다.
+            </p>
           </div>
     
           <div class="detail-card">
@@ -468,13 +472,15 @@
             <p>
               인벤토리는 고정된 슬롯 수를 기준으로 아이템을 관리하는 구조였기 때문에
               배열 기반 슬롯 시스템으로 구현했습니다.
-              각 슬롯은 인덱스를 통해 접근하며, 아이템 획득 시 빈 슬롯 또는 같은 아이템이 있는 슬롯을 확인한 뒤
-              수량 증가, 슬롯 저장, 퀵슬롯 연동이 이루어지도록 구성했습니다.
+              아이템 획득 시 같은 아이템이 있는 슬롯을 먼저 확인하고,
+              이후 빈 슬롯을 탐색해 아이템을 저장하도록 구성했습니다.
             </p>
             <p>
-              이 방식은 슬롯 개수가 정해진 인벤토리 UI와 연결하기 쉽고,
-              특정 슬롯의 아이템 정보를 빠르게 갱신할 수 있다는 장점이 있습니다.
+              인벤토리가 가득 찬 상태에서 아이템이 사라지는 문제를 방지하기 위해,
+              AddItem이 성공 여부를 bool 값으로 반환하도록 개선했습니다.
+              아이템 오브젝트는 인벤토리에 정상적으로 추가되었을 때만 삭제되도록 처리했습니다.
             </p>
+          </div>
           </div>
     
           <div class="detail-card">
@@ -492,6 +498,181 @@
               아이템 사용 후에는 인벤토리 수량을 감소시키고, UI가 현재 상태를 갱신하도록 연결했습니다.
             </p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
+        <h2 class="section-title">Core Code</h2>
+    
+        <div class="core-code-grid">
+    
+          <div class="code-card">
+            <h3>Safe Inventory AddItem Logic</h3>
+            <p>
+              인벤토리는 고정된 슬롯 수를 가진 배열 기반 구조로 구현했습니다.
+              아이템 획득 시 같은 아이템이 있는 슬롯을 먼저 확인하고, 이후 빈 슬롯을 탐색합니다.
+              기존 구조에서 인벤토리가 가득 찼을 때 아이템이 사라질 수 있는 문제를 방지하기 위해,
+              AddItem이 성공 여부를 bool 값으로 반환하도록 개선했습니다.
+            </p>
+    
+            <details class="code-toggle">
+              <summary>코드 보기</summary>
+              <pre><code>public bool AddItem(ItemData item)
+    {
+        if (item == null)
+            return false;
+    
+        int max = item.maxStack;
+    
+        for (int i = 0; i &lt; quickSlots.Length; i++)
+        {
+            if (quickSlots[i].item == item &amp;&amp; quickSlots[i].quantity &lt; max)
+            {
+                quickSlots[i].quantity++;
+                QuickSlotUI.Instance?.Refresh();
+                return true;
+            }
+        }
+    
+        for (int i = 0; i &lt; inventorySlots.Length; i++)
+        {
+            if (inventorySlots[i].item == item &amp;&amp; inventorySlots[i].quantity &lt; max)
+            {
+                inventorySlots[i].quantity++;
+                InventoryUI.Instance?.Refresh();
+                return true;
+            }
+        }
+    
+        for (int i = 0; i &lt; quickSlots.Length; i++)
+        {
+            if (quickSlots[i].IsEmpty)
+            {
+                quickSlots[i].item = item;
+                quickSlots[i].quantity = 1;
+                QuickSlotUI.Instance?.Refresh();
+                return true;
+            }
+        }
+    
+        for (int i = 0; i &lt; inventorySlots.Length; i++)
+        {
+            if (inventorySlots[i].IsEmpty)
+            {
+                inventorySlots[i].item = item;
+                inventorySlots[i].quantity = 1;
+                InventoryUI.Instance?.Refresh();
+                return true;
+            }
+        }
+    
+        Debug.Log("Inventory Full!");
+        return false;
+    }</code></pre>
+            </details>
+          </div>
+    
+          <div class="code-card">
+            <h3>Item Pickup Safety Check</h3>
+            <p>
+              아이템 오브젝트는 인벤토리에 정상적으로 추가되었을 때만 삭제되도록 수정했습니다.
+              이를 통해 인벤토리가 가득 찬 상태에서 아이템을 획득하려고 해도,
+              아이템이 사라지지 않고 월드에 남아 있도록 예외 상황을 처리했습니다.
+            </p>
+    
+            <details class="code-toggle">
+              <summary>코드 보기</summary>
+              <pre><code>private bool picked = false;
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (picked)
+            return;
+    
+        if (!other.CompareTag("Player"))
+            return;
+    
+        if (InventorySystem.Instance == null)
+            return;
+    
+        bool success = InventorySystem.Instance.AddItem(item);
+    
+        if (!success)
+        {
+            Debug.Log("인벤토리가 가득 차서 아이템을 획득할 수 없습니다.");
+            return;
+        }
+    
+        picked = true;
+        Destroy(gameObject);
+    
+        InventoryUI.Instance?.Refresh();
+        QuickSlotUI.Instance?.Refresh();
+    }</code></pre>
+            </details>
+          </div>
+    
+          <div class="code-card">
+            <h3>Height-based Spawn Optimization</h3>
+            <p>
+              자원과 몬스터를 무작위로 배치할 때 Raycast로 실제 지형 위의 유효한 위치를 찾고,
+              해당 위치의 높이값에 따라 다른 프리팹이 생성되도록 구성했습니다.
+              반복적인 거리 비교에서는 Vector3.Distance 대신 sqrMagnitude를 사용해 불필요한 제곱근 연산을 줄였습니다.
+            </p>
+    
+            <details class="code-toggle">
+              <summary>코드 보기</summary>
+              <pre><code>Vector3? GetValidSpawnPoint()
+    {
+        Vector3 rayOrigin = transform.position + new Vector3(
+            Random.Range(-areaSize.x / 2, areaSize.x / 2),
+            50f,
+            Random.Range(-areaSize.z / 2, areaSize.z / 2)
+        );
+    
+        if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 200f, groundLayer))
+        {
+            if (allowedGrounds.Count &gt; 0 &amp;&amp; !allowedGrounds.Contains(hit.collider.transform))
+                return null;
+    
+            if (hit.normal.y &lt; 0.85f)
+                return null;
+    
+            Vector3 point = hit.point;
+            float minSqrDistance = minDistanceBetweenResources * minDistanceBetweenResources;
+    
+            foreach (Vector3 pos in spawnedPositions)
+            {
+                if ((point - pos).sqrMagnitude &lt; minSqrDistance)
+                    return null;
+            }
+    
+            return point;
+        }
+    
+        return null;
+    }
+    
+    GameObject GetPrefabByHeight(float height)
+    {
+        foreach (var group in heightResources)
+        {
+            if (height &gt;= group.minHeight &amp;&amp; height &lt;= group.maxHeight)
+            {
+                if (group.prefabs.Length == 0)
+                    return null;
+    
+                return group.prefabs[Random.Range(0, group.prefabs.Length)];
+            }
+        }
+    
+        return null;
+    }</code></pre>
+            </details>
+          </div>
+    
         </div>
       </div>
     </section>
@@ -520,20 +701,22 @@
               이를 줄이기 위해 Raycast로 실제 지형을 확인한 뒤 배치하도록 수정했습니다.
             </p>
             <p>
-              또한 맵의 높이값을 기준으로 등장 가능한 프리팹을 구분해,
-              플레이어가 더 높은 층으로 갈수록 다른 자원과 강한 몬스터를 만나도록 구성했습니다.
+              또한 맵의 높이값을 기준으로 등장 가능한 프리팹을 구분하고,
+              스폰 위치 간 거리 비교에는 sqrMagnitude를 사용해 불필요한 연산을 줄였습니다.
+              이를 통해 높이 기반 스폰 구조의 안정성과 효율성을 개선했습니다.
             </p>
           </div>
     
           <div class="detail-card">
-            <h3>Inventory and Growth Connection</h3>
+            <h3>Inventory Stability Improvement</h3>
             <p>
-              인벤토리가 단순히 아이템을 보관하는 기능에 그치면 게임 진행과의 연결성이 약했습니다.
-              그래서 몬스터 처치 보상인 랜덤 스탯 물약을 인벤토리와 연결했습니다.
+              기존 인벤토리 구조에서는 아이템 획득 시 인벤토리가 가득 찬 상황에 대한 처리가 부족해,
+              아이템이 정상적으로 저장되지 않았는데도 월드에서 사라질 수 있는 문제가 있었습니다.
             </p>
             <p>
-              플레이어는 물약을 획득하고 저장한 뒤 필요한 순간에 사용해 능력치를 강화할 수 있으며,
-              이 성장 구조가 상층의 강한 몬스터와 보스를 상대하는 흐름으로 이어지도록 만들었습니다.
+              이를 해결하기 위해 AddItem이 성공 여부를 bool 값으로 반환하도록 개선하고,
+              아이템 오브젝트는 인벤토리에 정상적으로 추가되었을 때만 삭제되도록 수정했습니다.
+              이를 통해 아이템 획득 실패 상황에서도 아이템이 사라지지 않도록 안정성을 높였습니다.
             </p>
           </div>
     
