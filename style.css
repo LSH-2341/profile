@@ -1511,3 +1511,66 @@ main,
   color: #ffffff;
   background: rgba(255, 119, 119, 0.12);
 }
+
+/* ================================
+   Core Code Section
+================================ */
+
+.core-code-grid {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.code-card {
+  padding: 1.5rem;
+  background: #1d1d23;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+}
+
+.code-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.7rem;
+  color: #ffffff;
+}
+
+.code-card p {
+  color: #cfcfcf;
+  line-height: 1.7;
+}
+
+.code-toggle {
+  margin-top: 1rem;
+}
+
+.code-toggle summary {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 90, 90, 0.12);
+  border: 1px solid rgba(255, 90, 90, 0.25);
+  color: #ff8c8c;
+  font-weight: 700;
+}
+
+.code-toggle summary:hover {
+  background: rgba(255, 90, 90, 0.2);
+  color: #ffffff;
+}
+
+.code-toggle pre {
+  margin-top: 1rem;
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: 14px;
+  background: #0b0b0e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.code-toggle code {
+  font-family: Consolas, Monaco, monospace;
+  font-size: 0.86rem;
+  color: #e8e8e8;
+  line-height: 1.6;
+}
