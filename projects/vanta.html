@@ -533,6 +533,92 @@
 
     <section class="section dark">
       <div class="container">
+        <h2 class="section-title">Core Code</h2>
+    
+        <div class="core-code-grid">
+    
+          <div class="code-card">
+            <h3>Level Up Upgrade Selection</h3>
+            <p>
+              레벨업이 발생하면 전체 업그레이드 후보 목록을 생성하고,
+              그중 중복 없는 3개의 선택지를 무작위로 뽑아 UI 버튼에 연결했습니다.
+              선택한 업그레이드는 플레이어의 스탯, 스킬, 무기 성능, 잠식률에 즉시 반영됩니다.
+            </p>
+    
+            <details class="code-toggle">
+              <summary>코드 보기</summary>
+              <pre><code>List&lt;UpgradeOption&gt; GetRandomOptions(int count)
+    {
+        List&lt;UpgradeOption&gt; tempList = new List&lt;UpgradeOption&gt;(allOptions);
+        List&lt;UpgradeOption&gt; result = new List&lt;UpgradeOption&gt;();
+    
+        for (int i = 0; i &lt; count; i++)
+        {
+            if (tempList.Count &lt;= 0)
+            {
+                break;
+            }
+    
+            int randomIndex = UnityEngine.Random.Range(0, tempList.Count);
+            result.Add(tempList[randomIndex]);
+            tempList.RemoveAt(randomIndex);
+        }
+    
+        return result;
+    }</code></pre>
+            </details>
+          </div>
+    
+          <div class="code-card">
+            <h3>Local Ranking Save & Sort</h3>
+            <p>
+              게임 종료 시 생존 시간, 처치 수, 레벨을 하나의 랭킹 데이터로 저장하고,
+              생존 시간을 1순위로 정렬했습니다. 생존 시간이 같을 경우 처치 수와 레벨을 기준으로 비교하며,
+              상위 10개의 기록만 유지해 로컬 랭킹으로 사용했습니다.
+            </p>
+    
+            <details class="code-toggle">
+              <summary>코드 보기</summary>
+              <pre><code>void SortRanking()
+    {
+        rankings.Sort((a, b) =&gt;
+        {
+            int timeCompare = b.survivalTime.CompareTo(a.survivalTime);
+    
+            if (timeCompare != 0)
+            {
+                return timeCompare;
+            }
+    
+            int killCompare = b.killCount.CompareTo(a.killCount);
+    
+            if (killCompare != 0)
+            {
+                return killCompare;
+            }
+    
+            return b.level.CompareTo(a.level);
+        });
+    }
+    
+    void SaveRanking()
+    {
+        RankingSaveData saveData = new RankingSaveData();
+        saveData.rankings = rankings;
+    
+        string json = JsonUtility.ToJson(saveData);
+        PlayerPrefs.SetString(RankingKey, json);
+        PlayerPrefs.Save();
+    }</code></pre>
+            </details>
+          </div>
+    
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
         <h2 class="section-title">Problem Solving</h2>
     
         <div class="detail-grid">
