@@ -562,6 +562,315 @@
 
     <section class="section dark">
       <div class="container">
+        <h2 class="section-title">Core Code</h2>
+    
+        <div class="core-code-grid">
+    
+          <div class="code-card">
+            <h3>Flashlight & Sight-based Creature Control</h3>
+            <p>
+              플레이어가 크리처를 바라보고 있고, 손전등 빛이 크리처에게 닿는 경우에만
+              크리처의 추격을 멈추도록 구현했습니다.
+              시야 각도, 손전등 범위, 손전등 각도, Raycast 충돌 검사를 함께 사용해
+              단순 거리 판정이 아닌 실제 시야 기반 반응을 만들었습니다.
+            </p>
+    
+            <details class="code-toggle">
+              <summary>코드 보기</summary>
+              <pre><code>void Update()
+    {
+        if (!activeAI) return;
+        if (enemyChase == null) return;
+        if (playerCamera == null || flashlight == null) return;
+    
+        bool flashlightOn =
+            flashlight.enabled &&
+            flashlight.intensity &gt; 0f;
+    
+        bool shouldStop =
+            flashlightOn &&
+            IsPlayerLooking() &&
+            IsInLight();
+    
+        enemyChase.SetPaused(shouldStop);
+    
+        if (animator != null)
+            animator.speed = shouldStop ? 0f : 1f;
+    }
+    
+    bool IsPlayerLooking()
+    {
+        Vector3 dirToEnemy =
+            transform.position - playerCamera.position;
+    
+        float distance = dirToEnemy.magnitude;
+    
+        if (distance &lt;= 0.01f)
+            return false;
+    
+        Vector3 direction = dirToEnemy / distance;
+        float angle = Vector3.Angle(playerCamera.forward, direction);
+    
+        if (angle &gt; viewAngle)
+            return false;
+    
+        if (Physics.Raycast(playerCamera.position, direction, out RaycastHit hit, distance))
+        {
+            return hit.transform == transform ||
+                   hit.transform.IsChildOf(transform);
+        }
+    
+        return false;
+    }
+    
+    bool IsInLight()
+    {
+        Vector3 dirToEnemy =
+            transform.position - flashlight.transform.position;
+    
+        float sqrDistance = dirToEnemy.sqrMagnitude;
+        float maxSqrDistance = flashlight.range * flashlight.range;
+    
+        if (sqrDistance &gt; maxSqrDistance)
+            return false;
+    
+        if (sqrDistance &lt;= 0.01f)
+            return false;
+    
+        Vector3 direction = dirToEnemy.normalized;
+        float angle = Vector3.Angle(flashlight.transform.forward, direction);
+    
+        if (angle &gt; flashlight.spotAngle / 2f)
+            return false;
+    
+        float distance = Mathf.Sqrt(sqrDistance);
+    
+        if (Physics.Raycast(flashlight.transform.position, direction, out RaycastHit hit, distance))
+        {
+            return hit.transform == transform ||
+                   hit.transform.IsChildOf(transform);
+        }
+    
+        return false;
+    }</code></pre>
+            </details>
+          </div>
+    
+          <div class="code-card">
+            <h3>Noise-based Creature State Logic</h3>
+            <p>
+              플레이어의 발소리나 특정 상호작용에서 발생한 소음을 NoiseManager에 저장하고,
+              소리 감지형 크리처가 해당 소음의 위치와 세기를 기준으로 반응하도록 구현했습니다.
+              크리처는 순찰 상태에서 소음을 감지하면 포효 후 소음 위치로 달려가고,
+              도착 후 주변을 탐색한 뒤 다시 순찰 상태로 돌아갑니다.
+            </p>
+    
+            <details class="code-toggle">
+              <summary>코드 보기</summary>
+              <pre><code>void CheckNoise()
+    {
+        if (NoiseManager.Instance == null || player == null)
+            return;
+    
+        Vector3 noisePos = NoiseManager.Instance.lastNoisePosition;
+        float noisePower = NoiseManager.Instance.lastNoisePower;
+        float noiseTime = NoiseManager.Instance.lastNoiseTime;
+    
+        if (Time.time - noiseTime &gt; 1f)
+            return;
+    
+        if (noiseTime &lt;= lastReactedNoiseTime)
+            return;
+    
+        float detectRange = hearingRange + noisePower;
+        float sqrDistance = (transform.position - noisePos).sqrMagnitude;
+    
+        if (sqrDistance &gt; detectRange * detectRange)
+            return;
+    
+        lastReactedNoiseTime = noiseTime;
+    
+        Vector3 velocity =
+            (player.position - lastPlayerPosition) /
+            Mathf.Max(Time.deltaTime, 0.001f);
+    
+        Vector3 predictedPos = noisePos;
+    
+        if (velocity.sqrMagnitude &gt; 0.01f)
+            predictedPos = noisePos + velocity.normalized * predictionDistance;
+    
+        if (NavMesh.SamplePosition(predictedPos, out NavMeshHit hit, 3f, NavMesh.AllAreas))
+            noiseTarget = hit.position;
+        else
+            noiseTarget = noisePos;
+    
+        if (!isInvestigatingNoise &amp;&amp; state == CreatureState.Patrol)
+        {
+            isInvestigatingNoise = true;
+            StartRoar();
+        }
+        else
+        {
+            RunToNewNoiseImmediately();
+        }
+    }
+    
+    void StartRoar()
+    {
+        StopAgent();
+    
+        state = CreatureState.Roar;
+    
+        if (animator != null)
+            animator.SetTrigger("Roar");
+    
+        if (audioSource != null &amp;&amp; roarSound != null)
+            audioSource.PlayOneShot(roarSound);
+    
+        if (stateCoroutine != null)
+            StopCoroutine(stateCoroutine);
+    
+        stateCoroutine = StartCoroutine(RoarSequence());
+    }
+    
+    IEnumerator RoarSequence()
+    {
+        yield return new WaitForSeconds(roarTime);
+    
+        if (state != CreatureState.Roar)
+            yield break;
+    
+        state = CreatureState.RunToNoise;
+    
+        if (animator != null)
+        {
+            animator.ResetTrigger("Roar");
+            animator.SetBool("IsSearching", false);
+            animator.SetBool("IsWalking", false);
+            animator.SetBool("IsRunning", true);
+            animator.CrossFade("Run", 0.08f);
+        }
+    
+        agent.isStopped = false;
+        agent.speed = runSpeed;
+        agent.SetDestination(noiseTarget);
+    }</code></pre>
+            </details>
+          </div>
+    
+          <div class="code-card">
+            <h3>Flashlight Break & Repair Sequence</h3>
+            <p>
+              손전등은 일정 시간 사용 후 깜박이다가 고장 상태로 전환되며,
+              고장 상태에서는 랜덤으로 생성된 숫자 입력 순서를 맞춰야 다시 켜지도록 구현했습니다.
+              잘못된 키를 입력하면 진행도가 초기화되고, 모든 입력을 올바르게 완료하면 손전등 내구 시간과 깜박임 상태가 초기화됩니다.
+            </p>
+    
+            <details class="code-toggle">
+              <summary>코드 보기</summary>
+              <pre><code>void BreakFlashlight()
+    {
+        wasLightOnWhenBroken =
+            lightComp != null &amp;&amp; lightComp.enabled;
+    
+        currentState = State.Broken;
+    
+        if (lightComp != null)
+            lightComp.enabled = false;
+    
+        StopFlickerSound();
+        GenerateSequence();
+    
+        repairUIShown = false;
+    
+        if (sequenceText != null)
+            sequenceText.gameObject.SetActive(false);
+    
+        if (wasLightOnWhenBroken)
+            ShowRepairUI();
+    }
+    
+    void GenerateSequence()
+    {
+        repairSequence.Clear();
+        currentInputIndex = 0;
+    
+        for (int i = 0; i &lt; sequenceLength; i++)
+        {
+            KeyCode randomKey =
+                possibleKeys[Random.Range(0, possibleKeys.Length)];
+    
+            repairSequence.Add(randomKey);
+        }
+    
+        UpdateSequenceUI();
+    }
+    
+    void HandleRepair()
+    {
+        if (!repairUIShown) return;
+        if (currentInputIndex &gt;= repairSequence.Count) return;
+    
+        KeyCode currentKey = repairSequence[currentInputIndex];
+    
+        if (Input.GetKeyDown(currentKey))
+        {
+            PlaySound(keyPressSound);
+    
+            currentInputIndex++;
+            UpdateSequenceUI();
+    
+            if (currentInputIndex &gt;= repairSequence.Count)
+            {
+                if (sequenceText != null)
+                    sequenceText.text = "";
+    
+                TurnOnRepaired();
+            }
+    
+            return;
+        }
+    
+        foreach (KeyCode key in possibleKeys)
+        {
+            if (Input.GetKeyDown(key) &amp;&amp; key != currentKey)
+            {
+                PlaySound(keyPressSound);
+                currentInputIndex = 0;
+                UpdateSequenceUI();
+                break;
+            }
+        }
+    }
+    
+    void TurnOnRepaired()
+    {
+        currentState = State.On;
+    
+        if (lightComp != null)
+            lightComp.enabled = true;
+    
+        lifeTimer = 0f;
+        flickerDurationTimer = 0f;
+        flickerIntervalTimer = 0f;
+        hasStartedFlickering = false;
+        repairUIShown = false;
+        wasLightOnWhenBroken = false;
+    
+        if (sequenceText != null)
+            sequenceText.gameObject.SetActive(false);
+    
+        StopFlickerSound();
+    }</code></pre>
+            </details>
+          </div>
+    
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
         <h2 class="section-title">Problem Solving</h2>
     
         <div class="detail-grid">
